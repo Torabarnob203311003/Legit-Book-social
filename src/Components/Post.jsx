@@ -21,7 +21,7 @@ export default function Post({ username, time, message, imageUrl }) {
             {/* Actions */}
             <div className="mt-4 flex justify-items-center gap-52    text-gray-400 text-sm sm:text-base">
                 <span>❤️ 25</span>
-                
+
                 <span><FaRegCommentAlt /> </span>
                 <span><FaShare /> </span>
             </div>

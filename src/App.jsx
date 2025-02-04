@@ -8,7 +8,7 @@ import { demoPosts } from "./Components/Data/configure";
 export default function App() {
   return ( 
 
-    <div className=" bg-[#1A1A1A] "> 
+    <div className=" bg-[#1A1A1A]  overflow-hidden"> 
       {/*Navbar section */}
       <Navbar />
     
@@ -18,14 +18,17 @@ export default function App() {
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 p-6">
-       
+        <div className=  "flex-1 p-6 h-screen overflow-auto">
 
-        {/* Post Section */}
-          <div className="mt-6 space-y-6">
-            {demoPosts.map((post, index) => (
-              <Post key={index} {...post} /> // Spread props dynamically
-            ))}
+          <div className="flex-1 p-6">
+
+
+            {/* Post Section */}
+            <div className="mt-6 space-y-6">
+              {demoPosts.map((post, index) => (
+                <Post key={index} {...post} /> // Spread props dynamically
+              ))}
+            </div>
           </div>
       </div>
 
