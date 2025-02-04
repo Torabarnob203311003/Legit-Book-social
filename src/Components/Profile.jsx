@@ -1,6 +1,6 @@
 export default function Profile() {
     return (
-        <aside className="w-1/4 bg-gray-800 p-6 rounded-lg">
+        <div className="w-1/4 bg-gray-800 p-6 rounded-lg">
             {/* Profile Picture */}
             <div className="w-16 h-16 bg-gray-700 rounded-full mx-auto"></div>
 
@@ -30,6 +30,6 @@ export default function Profile() {
             <button className="mt-6 w-full bg-blue-500 py-2 rounded-lg hover:bg-blue-600 transition">
                 Resume Builder
             </button>
-        </aside>
+        </div>
     );
 }
