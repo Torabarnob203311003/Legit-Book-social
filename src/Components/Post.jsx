@@ -1,6 +1,6 @@
 export default function Post({ username, time, message, imageUrl }) {
     return (
-        <div className="bg-gray-800 p-6 rounded-lg">
+        <div className=" p-6 rounded-lg">
             {/* User Info */}
             <div className="flex items-center space-x-4">
                 <div className="w-10 h-10 bg-gray-700 rounded-full"></div>

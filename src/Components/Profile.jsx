@@ -1,6 +1,6 @@
 export default function Profile() {
     return (
-        <div className="w-1/4 bg-gray-800 p-6 rounded-lg">
+        <div className="w-1/4  p-6 rounded-lg">
             {/* Profile Picture */}
             <div className="w-16 h-16 bg-gray-700 rounded-full mx-auto"></div>
 

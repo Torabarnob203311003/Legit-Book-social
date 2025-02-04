@@ -5,15 +5,20 @@ import Profile from "./Components/Profile";
 import Sidebar from "./Components/Sidebar";
 
 export default function App() {
-  return (
+  return ( 
+
+    <div className=" bg-[#1A1A1A] "> 
+      {/*Navbar section */}
+      <Navbar />
+    
     <div className="flex bg-gray-900 text-white min-h-screen">
+      
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 p-6">
-        {/* Navbar */}
-            <Navbar/>
+       
 
         {/* Post Section */}
         <div className="mt-6 space-y-6">
@@ -29,6 +34,7 @@ export default function App() {
       {/* Profile Sidebar */}
    <Profile/>
     
+    </div>
     </div>
   );
 }
