@@ -3,6 +3,7 @@ import Navbar from "./Components/Navbar";
 import Post from "./Components/Post";
 import Profile from "./Components/Profile";
 import Sidebar from "./Components/Sidebar";
+import { demoPosts } from "./Components/Data/configure";
 
 export default function App() {
   return ( 
@@ -21,18 +22,29 @@ export default function App() {
        
 
         {/* Post Section */}
-        <div className="mt-6 space-y-6">
-          <Post
-            username="Sheikh Mojibar Rahman"
-            time="25 min ago"
-              message=" Happy Anniversary To Sheikh Hasina and Modi ji 💗 💗 💗 💗 ."
-              imageUrl="https://www.bizzbuzz.news/h-upload/2024/01/09/1845479-hasina.jpg"
-          />
-        </div>
+          <div className="mt-6 space-y-6">
+            {demoPosts.map((post, index) => (
+              <Post key={index} {...post} /> // Spread props dynamically
+            ))}
+          </div>
       </div>
 
       {/* Profile Sidebar */}
-   <Profile/>
+ <Profile
+    name="Abu Torab"
+    bio="Software Engineer (Intern)"
+    jobs={[
+        "Nike (2015-Present)",
+        "McDonald's (2013-2016)",
+        "Google (2016-Present)",
+        "Apple (2014-2016)"
+    ]}
+    education={[
+        "Bachelors CS - 3.5 GPA",
+        "Master IT - 3.5 GPA"
+    ]}
+/>
+
     
     </div>
     </div>
