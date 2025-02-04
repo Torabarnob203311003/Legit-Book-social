@@ -30,7 +30,7 @@ export default function Sidebar() {
     };
 
     return (
-        <div className="w-64 bg-[#1A1A1A] text-gray-500  p-8 space-y-4">
+        <div className="w-full sm:w-64 bg-[#1A1A1A] text-gray-500 p-8 space-y-4">
             <div className="flex justify-between">
                 <h2 className="text-lg font-semibold">Filters</h2>
                 <button className="text-blue-400 text-sm">Clear All</button>
@@ -39,7 +39,7 @@ export default function Sidebar() {
             {/* Locations Section */}
             <div>
                 <button
-                    className="w-full text-left text-white   py-2 "
+                    className="w-full text-left text-white py-2"
                     onClick={() => setShowLocationFilters(!showLocationFilters)}
                 >
                     Locations
@@ -50,7 +50,7 @@ export default function Sidebar() {
                     )}
                 </button>
                 {showLocationFilters && (
-                    <div className=" space-y-4">
+                    <div className="space-y-4">
                         {/* Country Selection */}
                         <div>
                             <label className="block text-sm font-semibold">Select Country</label>
@@ -98,22 +98,22 @@ export default function Sidebar() {
 
             {/* Other Filters Placeholder (No Toggle) */}
             <div className="space-y-2">
-                <button className="w-full text-left text-white  py-2 ">
+                <button className="w-full text-left text-white py-2">
                     People <RiArrowDownWideFill className="inline-block ml-28" />
                 </button>
-                <button className="w-full text-left text-white  py-2 ">
+                <button className="w-full text-left text-white py-2">
                     Education <RiArrowDownWideFill className="inline-block ml-[90px]" />
                 </button>
-                <button className="w-full text-left text-white py-2 ">
+                <button className="w-full text-left text-white py-2">
                     Work <RiArrowDownWideFill className="inline-block ml-[122px]" />
                 </button>
-                <button className="w-full text-left text-white   py-2 ">
+                <button className="w-full text-left text-white py-2">
                     Friends of Friend <RiArrowDownWideFill className="inline-block ml-[42px]" />
                 </button>
-                <button className="w-full text-left text-white   py-2 ">
+                <button className="w-full text-left text-white py-2">
                     Interests <RiArrowDownWideFill className="inline-block ml-[100px]" />
                 </button>
-                <button className="w-full text-left text-white   py-2 ">
+                <button className="w-full text-left text-white py-2">
                     Companies <RiArrowDownWideFill className="inline-block ml-[80px]" />
                 </button>
             </div>

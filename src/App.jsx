@@ -23,10 +23,10 @@ export default function App() {
         {/* Post Section */}
         <div className="mt-6 space-y-6">
           <Post
-            username="Alex Kindrik"
+            username="Sheikh Mojibar Rahman"
             time="25 min ago"
-            message="The new space will soon be ready. Our developers are waiting for the azure color."
-            imageUrl="https://source.unsplash.com/random/800x600?office"
+              message=" Happy Anniversary To Sheikh Hasina and Modi ji 💗 💗 💗 💗 ."
+              imageUrl="https://www.bizzbuzz.news/h-upload/2024/01/09/1845479-hasina.jpg"
           />
         </div>
       </div>

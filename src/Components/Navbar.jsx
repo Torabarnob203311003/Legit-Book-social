@@ -6,53 +6,52 @@ import { CiSearch } from "react-icons/ci";
 
 function Navbar() {
     return (
-        <nav className="bg-[#1A1A1A]   py-4 px-8 rounded-lg flex justify-between items-center">
+        <nav className="bg-[#1A1A1A] py-4 px-8 rounded-lg flex justify-between items-center flex-wrap">
             {/* Left Section - Logo & Search */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-start">
                 <h1 className="text-3xl font-semibold text-white">
                     Legit<span className="text-blue-600">book</span>
                 </h1>
-                <div className="relative"> {/* Added relative wrapper for search icon positioning */}
+                <div className="relative w-full sm:w-[550px]"> {/* Full width on small screens, fixed width on larger screens */}
                     <input
                         type="text"
                         placeholder="Search for people, places or companies..."
-                        className="px-3 py-2 rounded-lg bg-stone-800 border-none text-white outline-none w-[550px] pl-10" // Added pl-10 for padding to accommodate icon
+                        className="px-3 py-2 rounded-lg bg-stone-800 border-none text-white outline-none w-full sm:w-[550px] pl-10" // Full width on small screens
                     />
                     <CiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" /> {/* Search icon */}
                 </div>
             </div>
 
-            {/* Center Section - Horizontal Navigation (No changes needed here) */}
-            <div className="flex items-center gap-6 text-gray-300">
-                <div className="flex items-center gap-2 bg-white    pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer hover:text-white transition">
-                    <FaHome className='text-blue-700  ' size={22} />
-                    <span className="text-sm  text-black">Home</span>
+            {/* Center Section - Horizontal Navigation */}
+            <div className="flex items-center gap-8 pr-[350px] text-gray-300 flex-wrap justify-center sm:justify-start w-full sm:w-auto">
+                <div className="flex items-center gap-2 bg-white pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer hover:text-white transition">
+                    <FaHome className='text-blue-700' size={22} />
+                    <span className="text-sm text-black">Home</span>
                 </div>
 
                 <div className="flex items-center gap-1 cursor-pointer text-gray-400 hover:text-white transition">
                     <FaRegNewspaper size={22} />
-                    <span className="text-sm ">News</span>
+                    <span className="text-sm">News</span>
                 </div>
 
                 <div className="flex items-center gap-1 cursor-pointer text-gray-400 hover:text-white transition">
                     <LuFolderSearch2 size={22} />
-                    <span className="text-sm ">Job Search</span>
+                    <span className="text-sm">Job Search</span>
                 </div>
 
                 <div className="flex items-center gap-1 cursor-pointer text-gray-400 hover:text-white transition">
                     <MdCastForEducation size={22} />
-                    <span className="text-sm ">Education</span>
+                    <span className="text-sm">Education</span>
                 </div>
 
                 <div className="flex items-center gap-1 cursor-pointer text-gray-400 hover:text-white transition">
                     <FaUsers size={22} />
-                    <span className="text-sm ">Creators</span>
+                    <span className="text-sm">Creators</span>
                 </div>
             </div>
 
-            {/* Right side: Notification and Avatar (Placeholder)  */}
+            {/* Right Section - Notification and Avatar */}
             <div className="flex items-center space-x-4">
-                {/* ... (Notification and Avatar code remains the same) */}
                 <button className="relative">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.657V5a2 2 0 10-4 0v.343C7.67 6.165 6 8.388 6 11v3.158c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -81,6 +80,15 @@ function Navbar() {
                         <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
                     </div>
                 </div>
+            </div>
+
+            {/* Mobile Hamburger Menu */}
+            <div className="sm:hidden flex items-center">
+                <button className="text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </nav>
     );
