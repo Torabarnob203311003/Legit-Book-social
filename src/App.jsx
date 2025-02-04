@@ -11,7 +11,7 @@ export default function App() {
       {/*Navbar section */}
       <Navbar />
     
-    <div className="flex bg-gray-900 text-white min-h-screen">
+      <div className="flex bg-[#1A1A1A]  text-white min-h-screen">
       
       {/* Sidebar */}
       <Sidebar />
