@@ -6,7 +6,7 @@ import { CiSearch } from "react-icons/ci";
 
 function Navbar() {
     return (
-        <nav className="bg-[#1A1A1A] py-4 px-8 rounded-lg flex justify-between items-center">
+        <nav className="bg-[#1A1A1A]   py-4 px-8 rounded-lg flex justify-between items-center">
             {/* Left Section - Logo & Search */}
             <div className="flex items-center gap-4">
                 <h1 className="text-3xl font-semibold text-white">

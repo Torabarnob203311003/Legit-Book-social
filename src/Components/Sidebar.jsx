@@ -1,15 +1,119 @@
+import { useState } from "react";
+import Select from "react-select";
+import { RiArrowDownWideFill } from "react-icons/ri";
+
+const countries = [
+    { label: "United States", value: "US" },
+    { label: "Canada", value: "CA" },
+    { label: "United Kingdom", value: "UK" },
+    { label: "Germany", value: "DE" },
+    { label: "Australia", value: "AU" },
+];
+
+const cities = {
+    US: ["New York", "Los Angeles", "Chicago"],
+    CA: ["Toronto", "Vancouver", "Montreal"],
+    UK: ["London", "Manchester", "Birmingham"],
+    DE: ["Berlin", "Munich", "Hamburg"],
+    AU: ["Sydney", "Melbourne", "Brisbane"],
+};
+
 export default function Sidebar() {
+    const [showLocationFilters, setShowLocationFilters] = useState(false);
+    const [selectedCountries, setSelectedCountries] = useState([]);
+    const [selectedCities, setSelectedCities] = useState([]);
+    const [otherInput, setOtherInput] = useState("");
+
+    const handleCountryChange = (selected) => {
+        setSelectedCountries(selected);
+        setSelectedCities([]); // Reset cities when changing countries
+    };
+
     return (
-        <div className="w-1/4  p-6 rounded-lg">
-            <h2 className="text-lg font-semibold text-gray-300">Filters</h2>
-            <ul className="mt-4 space-y-2">
-                <li className="cursor-pointer hover:text-blue-400">📍 Locations</li>
-                <li className="cursor-pointer hover:text-blue-400">👥 People</li>
-                <li className="cursor-pointer hover:text-blue-400">🎓 Education</li>
-                <li className="cursor-pointer hover:text-blue-400">💼 Work</li>
-                <li className="cursor-pointer hover:text-blue-400">🗂 Interests</li>
-                <li className="cursor-pointer hover:text-blue-400">🏢 Companies</li>
-            </ul>
+        <div className="w-64 bg-gray-900 text-white p-4 space-y-4">
+            <div className="flex justify-between">
+                <h2 className="text-lg font-semibold">Filters</h2>
+                <button className="text-blue-400 text-sm">Clear All</button>
+            </div>
+
+            {/* Locations Section */}
+            <div>
+                <button
+                    className="w-full text-left text-white bg-gray-800 px-3 py-2 rounded"
+                    onClick={() => setShowLocationFilters(!showLocationFilters)}
+                >
+                    Locations
+                    {showLocationFilters ? (
+                        <RiArrowDownWideFill className="inline-block ml-24 rotate-180" />
+                    ) : (
+                        <RiArrowDownWideFill className="inline-block ml-24" />
+                    )}
+                </button>
+                {showLocationFilters && (
+                    <div className="mt-2 space-y-4">
+                        {/* Country Selection */}
+                        <div>
+                            <label className="block text-sm font-semibold">Select Country</label>
+                            <Select
+                                options={countries}
+                                value={selectedCountries}
+                                onChange={handleCountryChange}
+                                isMulti
+                                menuPortalTarget={document.body}
+                                classNamePrefix="react-select"
+                                className="text-black"
+                            />
+                        </div>
+
+                        {/* City Selection */}
+                        <div>
+                            <label className="block text-sm font-semibold">Select City</label>
+                            <Select
+                                options={
+                                    selectedCountries.length > 0
+                                        ? selectedCountries.flatMap((country) =>
+                                            cities[country.value]?.map((city) => ({
+                                                label: city,
+                                                value: city,
+                                            })) || []
+                                        )
+                                        : []
+                                }
+                                value={selectedCities}
+                                onChange={setSelectedCities}
+                                isMulti
+                                menuPortalTarget={document.body}
+                                classNamePrefix="react-select"
+                                className="text-black"
+                            />
+                        </div>
+
+                        {/* Other Input Box */}
+                        <div>
+                            <label className="block text-sm text-blue-700 font-semibold">Clear Filters</label>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Other Filters Placeholder (No Toggle) */}
+            <div className="space-y-2">
+                <button className="w-full text-left text-white bg-gray-800 px-3 py-2 rounded">
+                    People <RiArrowDownWideFill className="inline-block ml-28" />
+                </button>
+                <button className="w-full text-left text-white bg-gray-800 px-3 py-2 rounded">
+                    Education <RiArrowDownWideFill className="inline-block ml-[90px]" />
+                </button>
+                <button className="w-full text-left text-white bg-gray-800 px-3 py-2 rounded">
+                    Work <RiArrowDownWideFill className="inline-block ml-[122px]" />
+                </button>
+                <button className="w-full text-left text-white bg-gray-800 px-3 py-2 rounded">
+                    Friends of Friend <RiArrowDownWideFill className="inline-block ml-[42px]" />
+                </button>
+                <button className="w-full text-left text-white bg-gray-800 px-3 py-2 rounded">
+                    Interests <RiArrowDownWideFill className="inline-block ml-[100px]" />
+                </button>
+            </div>
         </div>
     );
 }
