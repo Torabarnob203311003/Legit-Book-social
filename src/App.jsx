@@ -1,4 +1,5 @@
 
+import Navbar from "./Components/Navbar";
 import Post from "./Components/Post";
 import Profile from "./Components/Profile";
 import Sidebar from "./Components/Sidebar";
@@ -12,14 +13,7 @@ export default function App() {
       {/* Main Content */}
       <div className="flex-1 p-6">
         {/* Navbar */}
-        <nav className="bg-gray-800 p-4 rounded-lg flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-blue-400">Legitbook</h1>
-          <input
-            type="text"
-            placeholder="Search..."
-            className="px-3 py-2 rounded-lg bg-gray-700 border-none text-white outline-none"
-          />
-        </nav>
+            <Navbar/>
 
         {/* Post Section */}
         <div className="mt-6 space-y-6">
