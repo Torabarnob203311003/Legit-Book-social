@@ -1,5 +1,6 @@
-import Profile from "./components/Profile";
+
 import Post from "./Components/Post";
+import Profile from "./Components/Profile";
 import Sidebar from "./Components/Sidebar";
 
 export default function App() {
@@ -32,7 +33,8 @@ export default function App() {
       </div>
 
       {/* Profile Sidebar */}
-      <Profile />
+   <Profile/>
+    
     </div>
   );
 }
