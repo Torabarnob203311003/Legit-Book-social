@@ -1,6 +1,6 @@
-import Sidebar from "./components/Sidebar";
 import Profile from "./components/Profile";
 import Post from "./Components/Post";
+import Sidebar from "./Components/Sidebar";
 
 export default function App() {
   return (
