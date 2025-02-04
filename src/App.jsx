@@ -24,9 +24,9 @@ export default function App() {
 
 
             {/* Post Section */}
-            <div className="mt-6 space-y-6">
+            <div className="mt-6  space-y-6">
               {demoPosts.map((post, index) => (
-                <Post key={index} {...post} /> // Spread props dynamically
+                <Post  key={index} {...post} /> // Spread props dynamically
               ))}
             </div>
           </div>

@@ -2,7 +2,7 @@ import { FaRegCommentAlt } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
 export default function Post({ username, time, message, imageUrl }) {
     return (
-        <div className="p-6 rounded-lg w-full sm:w-auto">
+        <div className="p-6  ml-[250px] rounded-lg w-full sm:w-auto">
             {/* User Info */}
             <div className="flex items-center space-x-4">
                 <div className="w-10 h-10 bg-gray-700 rounded-full"></div>

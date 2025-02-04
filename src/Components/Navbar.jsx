@@ -68,7 +68,7 @@ function Navbar() {
 
                 <div className="relative">
                     <button className="flex items-center">
-                        <img src="your-avatar-url.jpg" alt="Avatar" className="rounded-full h-8 w-8 border-2 border-white" />
+                        <img src="https://th.bing.com/th/id/OIP.xuQ8LLg21R1s131TqnRxywAAAA?rs=1&pid=ImgDetMainj" alt="Avatar" className="rounded-full h-8 w-8 border-2 border-white" />
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 ml-2" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                         </svg>
