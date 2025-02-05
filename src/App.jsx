@@ -11,30 +11,44 @@ import JobSearch from './Components/Navbar-Sections/Job-Search';
 import Educations from './Components/Navbar-Sections/Education';
 import Creators from './Components/Navbar-Sections/Creators';
 
-
 export default function App() {
   return (
     <div className="bg-[#1A1A1A] overflow-hidden">
       <Router>
         <Navbar />
-        {/* Routes for different sections */}
-        <Routes>
-          <Route path="/news" element={<News />} />
-          <Route path="/job-search" element={<JobSearch/>} />
-          <Route path="/education" element={<Educations/>} />
-          <Route path="/creators" element={<Creators/>} />
-        </Routes>
-
         <div className="flex bg-[#1A1A1A] text-white min-h-screen">
+          {/* Sidebar Section */}
           <Sidebar />
+
+          {/* Content Section */}
           <div className="flex-1 p-6 h-screen overflow-auto">
             <div className="flex-1 p-6">
-              {/* Post Section */}
-              <div className="mt-6 space-y-6">
-                {demoPosts.map((post, index) => (
-                  <Post key={index} {...post} />
-                ))}
-              </div>
+              {/* Routes for different sections */}
+              <Routes>
+                {/* News Route */}
+                <Route path="/news" element={<News />} />
+
+                {/* Job Search Route */}
+                <Route path="/job-search" element={<JobSearch />} />
+
+                {/* Education Route */}
+                <Route path="/education" element={<Educations />} />
+
+                {/* Creators Route */}
+                <Route path="/creators" element={<Creators />} />
+
+                {/* Default (Post) Route */}
+                <Route
+                  path="/"
+                  element={
+                    <div className="mt-6 space-y-6">
+                      {demoPosts.map((post, index) => (
+                        <Post key={index} {...post} />
+                      ))}
+                    </div>
+                  }
+                />
+              </Routes>
             </div>
           </div>
 

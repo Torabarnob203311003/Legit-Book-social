@@ -1,13 +1,10 @@
-// News.js
-import React from 'react';
-
-function Educations() {
+const Educations = () => {
     return (
-        <div className="bg-[#1A1A1A] text-white">
-            <h2>News Section</h2>
-            {/* Your News content */}
+        <div>
+            <h1>This is the Education Section</h1>
+            {/* Add education content here */}
         </div>
     );
-}
+};
 
 export default Educations;

@@ -1,13 +1,10 @@
-// News.js
-import React from 'react';
-
-function JobSearch() {
+const JobSearch = () => {
     return (
-        <div className="bg-[#1A1A1A] text-white">
-            <h2>News Section</h2>
-            {/* Your News content */}
+        <div>
+            <h1>This is the Job Search Section</h1>
+            {/* Add job search content here */}
         </div>
     );
-}
+};
 
 export default JobSearch;

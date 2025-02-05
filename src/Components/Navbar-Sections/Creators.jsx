@@ -1,13 +1,10 @@
-// News.js
-import React from 'react';
-
-function Creators() {
+const Creators = () => {
     return (
-        <div className="bg-[#1A1A1A] text-white">
-            <h2>News Section</h2>
-            {/* Your News content */}
+        <div>
+            <h1>This is the Creators Section</h1>
+            {/* Add creator content here */}
         </div>
     );
-}
+};
 
 export default Creators;
