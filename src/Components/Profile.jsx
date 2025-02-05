@@ -2,7 +2,7 @@ export default function Profile({ name, bio, jobs, education }) {
     return (
         <div className="w-full sm:w-1/3 md:w-1/4 p-6 rounded-lg mx-auto">
             {/* Profile Picture */}
-            <img className="w-16 h-16 bg-gray-700 rounded-full mx-auto" src="https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png" alt="profile-pic" srcset="" />
+            <img className="w-16 h-16 bg-gray-700 rounded-full mx-auto" src="https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png" alt="profile-pic" />
 
             {/* Bio Section */}
             <h3 className="text-lg sm:text-xl font-bold text-center mt-4">{name}</h3>
@@ -31,4 +31,3 @@ export default function Profile({ name, bio, jobs, education }) {
         </div>
     );
 }
- 
