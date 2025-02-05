@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { FaHome, FaUsers, FaRegNewspaper } from "react-icons/fa";
+import { FaHome, FaUsers, FaRegNewspaper, FaBell } from "react-icons/fa";
 import { LuFolderSearch2 } from "react-icons/lu";
 import { MdCastForEducation } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
+import { FaEnvelope } from 'react-icons/fa'; // Keep this for the type
+import { FaEnvelope as FaEnvelopeIcon } from 'react-icons/fa6';
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -58,9 +60,25 @@ function Navbar() {
             </div>
 
             {/* Right Section - Notification and Avatar */}
-            <div className="flex items-center space-x-4">
-                {/* Notification and Avatar code */}
+            <div className="flex items-center space-x-6">
+                <div className="relative"> {/* Notification Icon */}
+                    <FaBell className="text-gray-400 hover:text-white cursor-pointer" size={24} />
+                    <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full text-white">3</span> {/* Notification Badge */}
+                </div>
+                <div className="relative"> {/* Message Icon */}
+                    <FaEnvelope className="text-gray-400 hover:text-white cursor-pointer" size={24} />
+                    <span className="absolute top-0 right-0 inline-block w-3 h-3 border-2 border-white rounded-full bg-green-500"></span> {/* Green dot for new messages */}
+                </div>
+                <div className="relative"> {/* Avatar */}
+                    <img
+                        src="https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png" // Replace with your avatar URL
+                        alt="Avatar"
+                        className="rounded-full h-11 w-11 cursor-pointer"
+                    />
+                    <span className="absolute bottom-0 right-0 inline-block w-3 h-3 border-2 border-white rounded-full bg-green-500"></span> {/* Online Status */}
+                </div>
             </div>
+
 
             {/* Mobile Hamburger Menu */}
             <div className="sm:hidden flex items-center">
@@ -75,4 +93,3 @@ function Navbar() {
 }
 
 export default Navbar;
- 
