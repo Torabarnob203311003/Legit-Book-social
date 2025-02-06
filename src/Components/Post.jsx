@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaRegCommentAlt, FaShareAlt, FaBookmark } from "react-icons/fa";
 import { HeartIcon } from "@heroicons/react/24/solid";
 
-export default function Post({ username, time, message, imageUrl }) {
+export default function Post({ username, time, message, imageUrl, logoUrl }) {
     const [likeCount, setLikeCount] = useState(25);
     const [isLiked, setIsLiked] = useState(false);
     const [showCommentBox, setShowCommentBox] = useState(false);
@@ -31,7 +31,8 @@ export default function Post({ username, time, message, imageUrl }) {
 
                 {/* User Info */}
                 <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-gray-700 rounded-full"></div>
+                    {/* Logo Image */}
+                    <img src="https://s3-alpha-sig.figma.com/img/8a57/03ab/40c7de9070ca322539f727640f649f1a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=qlexTvTHYu63Hp~Gz4OYC0mgQU1XK5vm2-XlKBqqLtQ5I9CR8B~8xKr2pDeld4UHJRDi~vK21PtlrsxiFuTGA9a~ZiA1ek2C9prjcprnrksOkX~o5nQqeucuBm9HzizOL0-vIE4hk3FPGwWmhwuerRxzoDce9O0fjhjqL6vKZLkVhcuQqBe0qklBpyMzy1Xrtlk6JVBoXKoInnIHdPB5bmH71u7TbhSyV1gPFF74JdZfugaEE8L0NMWuPOpTVt7r7hKoB7Kxr~SL9MDrDbzLG5gwRUd3wj9RduIPfHRiOvXCXE4hW9zokCqt2yOdA1W2kZ54ESpar8SRRl74JqgACA__" alt="Logo" className="w-10 h-10 rounded-full" />
                     <div className="flex gap-2 items-center">
                         <h3 className="font-bold text-xl sm:text-2xl">{username}</h3>
                         <p className="text-gray-400 mt-2 text-lg">{time}</p>
@@ -46,9 +47,9 @@ export default function Post({ username, time, message, imageUrl }) {
                 {imageUrl && <img src={imageUrl} alt="Post" className="mt-4 rounded-lg sm:w-[950px] sm:h-[380px]" />}
 
                 {/* Actions */}
-                <div className="mt-6  ml-14 flex items-center  justify-between text-gray-400 text-sm sm:text-base">
-                    <iv className="flex space-x-48">
-                       {/* Like Button */}
+                <div className="mt-6 ml-14 flex items-center justify-between text-gray-400 text-sm sm:text-base">
+                    <div className="flex space-x-48">
+                        {/* Like Button */}
                         <div className="flex items-center cursor-pointer" onClick={toggleLike}>
                             <HeartIcon className={`h-6 w-6 transition-colors ${isLiked ? "text-red-500" : "text-gray-500"}`} />
                             <span className="ml-1">{likeCount}</span>
@@ -65,7 +66,7 @@ export default function Post({ username, time, message, imageUrl }) {
 
                         {/* Save Button */}
                         <FaBookmark className="h-6 w-6 text-gray-500 cursor-pointer" />
-                    </iv>
+                    </div>
                 </div>
 
                 {/* Comment Box (Toggles) */}

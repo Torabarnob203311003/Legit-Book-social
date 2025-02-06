@@ -18,9 +18,9 @@ function Navbar() {
         <nav className="bg-[#1A1A1A] py-4 px-8 rounded-lg flex justify-between items-center flex-wrap">
             {/* Left Section - Logo & Search */}
             <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-start">
-                <h1 className="text-3xl font-semibold text-white">
+                <a href='<Navbar/>' className="text-3xl font-semibold text-white">
                     Legit<span className="text-blue-600">book</span>
-                </h1>
+                </a>
                 <div className="relative w-full sm:w-[550px]">
                     <input
                         type="text"
@@ -49,7 +49,7 @@ function Navbar() {
                         `flex items-center gap-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer transition ${isActive ? 'bg-white text-blue-600 ' : 'text-gray-400'}`
                     }
                 >
-                    <FaRegNewspaper  size={22} />
+                    <FaRegNewspaper size={22} />
                     <span className="text-sm">News</span>
                 </NavLink>
 
