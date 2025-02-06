@@ -6,7 +6,7 @@ export default function Post({ username, time, message, imageUrl }) {
         
        <div>
 
-            <div className="p-6 ml-0 sm:ml-[250px] rounded-lg w-full sm:w-auto">
+            <div className="p-6 ml-0 sm:ml-[250px] rounded-lg w-full bg-zinc-800 sm:w-auto">
 
                 
 
@@ -14,9 +14,9 @@ export default function Post({ username, time, message, imageUrl }) {
                 {/* User Info */}
                 <div className="flex items-center space-x-4">
                     <div className="w-10 h-10 bg-gray-700 rounded-full"></div>
-                    <div>
-                        <h3 className="font-bold text-lg sm:text-xl">{username}</h3>
-                        <p className="text-gray-400 text-sm">{time}</p>
+                    <div className="flex  gap-2 items-center">
+                        <h3 className="font-bold text-xl sm:text-2xl">{username}</h3>
+                        <p className="text-gray-400 mt-2 text-lg">{time}</p>
                     </div>
                 </div>
 
