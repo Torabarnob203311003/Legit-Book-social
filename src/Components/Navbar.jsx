@@ -3,7 +3,7 @@ import { FaHome, FaUsers, FaRegNewspaper, FaBell } from "react-icons/fa";
 import { LuFolderSearch2 } from "react-icons/lu";
 import { MdCastForEducation } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'; // Change Link to NavLink
 import { FaEnvelope } from 'react-icons/fa'; // Keep this for the type
 import { FaEnvelope as FaEnvelopeIcon } from 'react-icons/fa6';
 
@@ -32,31 +32,56 @@ function Navbar() {
             </div>
 
             {/* Center Section - Horizontal Navigation */}
-            <div className={`flex items-center gap-8 pr-[350px] text-gray-300 flex-wrap justify-center sm:justify-start w-full sm:w-auto ${isMobileMenuOpen ? "flex" : "hidden"} sm:flex`}>
-                <Link to="/" className="flex items-center gap-2 bg-white pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer hover:text-white transition">
-                    <FaHome className='text-blue-700' size={22} />
-                    <span className="text-sm text-black">Home</span>
-                </Link>
+            <div className={`flex items-center  gap-8 pl-5 pr-[300px] text-gray-300 flex-wrap justify-center sm:justify-start w-full sm:w-auto ${isMobileMenuOpen ? "flex" : "hidden"} sm:flex`}>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                        `flex items-center gap-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer transition ${isActive ? 'bg-white text-blue-600 ' : 'text-gray-400'}`
+                    }
+                >
+                    <FaHome className=" " size={22} />
+                    <span className="text-sm ">Home</span>
+                </NavLink>
 
-                <Link to="/news" className="flex items-center gap-1 cursor-pointer text-gray-400 hover:text-white transition">
-                    <FaRegNewspaper size={22} />
+                <NavLink
+                    to="/news"
+                    className={({ isActive }) =>
+                        `flex items-center gap-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer transition ${isActive ? 'bg-white text-blue-600 ' : 'text-gray-400'}`
+                    }
+                >
+                    <FaRegNewspaper  size={22} />
                     <span className="text-sm">News</span>
-                </Link>
+                </NavLink>
 
-                <Link to="/job-search" className="flex items-center gap-1 cursor-pointer text-gray-400 hover:text-white transition">
+                <NavLink
+                    to="/job-search"
+                    className={({ isActive }) =>
+                        `flex items-center gap-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer transition ${isActive ? 'bg-white text-blue-600 ' : 'text-gray-400'}`
+                    }
+                >
                     <LuFolderSearch2 size={22} />
                     <span className="text-sm">Job Search</span>
-                </Link>
+                </NavLink>
 
-                <Link to="/education" className="flex items-center gap-1 cursor-pointer text-gray-400 hover:text-white transition">
+                <NavLink
+                    to="/education"
+                    className={({ isActive }) =>
+                        `flex items-center gap-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer transition ${isActive ? 'bg-white text-blue-600 ' : 'text-gray-400'}`
+                    }
+                >
                     <MdCastForEducation size={22} />
                     <span className="text-sm">Education</span>
-                </Link>
+                </NavLink>
 
-                <Link to="/creators" className="flex items-center gap-1 cursor-pointer text-gray-400 hover:text-white transition">
+                <NavLink
+                    to="/creators"
+                    className={({ isActive }) =>
+                        `flex items-center gap-1 cursor-pointer transition ${isActive ? 'bg-white text-blue-600 pl-2 pr-2 pt-1 pb-1 rounded-xl' : 'text-gray-400'}`
+                    }
+                >
                     <FaUsers size={22} />
                     <span className="text-sm">Creators</span>
-                </Link>
+                </NavLink>
             </div>
 
             {/* Right Section - Notification and Avatar */}
@@ -78,7 +103,6 @@ function Navbar() {
                     <span className="absolute bottom-0 right-0 inline-block w-3 h-3 border-2 border-white rounded-full bg-green-500"></span> {/* Online Status */}
                 </div>
             </div>
-
 
             {/* Mobile Hamburger Menu */}
             <div className="sm:hidden flex items-center">
