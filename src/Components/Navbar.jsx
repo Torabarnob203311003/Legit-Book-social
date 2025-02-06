@@ -15,7 +15,7 @@ function Navbar() {
     };
 
     return (
-        <nav className="bg-[#1A1A1A] py-4 px-8 rounded-lg flex justify-between items-center flex-wrap">
+        <nav className="bg-[#1A1A1A]  rounded-lg flex justify-between pt-3 items-center flex-wrap">
             {/* Left Section - Logo & Search */}
             <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-start">
                 <a href='<Navbar/>' className="text-3xl font-semibold text-white">
@@ -32,7 +32,7 @@ function Navbar() {
             </div>
 
             {/* Center Section - Horizontal Navigation */}
-            <div className={`flex items-center  gap-8 pl-5 pr-[300px] text-gray-300 flex-wrap justify-center sm:justify-start w-full sm:w-auto ${isMobileMenuOpen ? "flex" : "hidden"} sm:flex`}>
+            <div className={`flex items-center  gap-8 pl-5 pr-[280px] text-gray-300 flex-wrap justify-center sm:justify-start w-full sm:w-auto ${isMobileMenuOpen ? "flex" : "hidden"} sm:flex`}>
                 <NavLink
                     to="/"
                     className={({ isActive }) =>

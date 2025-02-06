@@ -33,8 +33,8 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
     };
 
     return (
-        <div className="mr-32">
-            <div className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-6 ml-0 sm:ml-[150px] rounded-lg w-[712px] h-auto bg-zinc-800 sm:w-auto">
+        <div className="ml-32   ">
+            <div className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-6 ml-0 sm:ml-[150px]  rounded-lg  max-w-[712px]  max-h-auto bg-zinc-800 sm:w-auto">
 
                 {/* User Info */}
                 <div className="flex items-center space-x-4">
@@ -72,7 +72,7 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
                         <FaShareAlt className="h-6 w-6 text-gray-500 cursor-pointer" onClick={handleShareClick} />
 
                         {/* Save Button */}
-                        <FaBookmark className="h-6 w-6 text-gray-500 cursor-pointer" />
+                       
                     </div>
                 </div>
 

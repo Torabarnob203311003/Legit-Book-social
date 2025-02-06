@@ -2,7 +2,7 @@ import { FaCheckCircle } from "react-icons/fa";
 
 export default function Profile() {
     return (
-        <div className="max-w-xs mx-auto pl-3 p-3 space-y-6">
+        <div className="max-w-[248px] max-h-[400px] max-h-auto pl-3 p-3 space-y-6">
             {/* Bio Section */}
             <h2 className="text-gray-500 text-lg font-semibold">Bio</h2>
             <p className="text-white">
