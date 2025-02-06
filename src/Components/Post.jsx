@@ -20,9 +20,16 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
 
     const submitComment = () => {
         if (commentText.trim() !== "") {
-            setComments([...comments, commentText]);
+            setComments([
+                ...comments,
+                { text: commentText, logo: logoUrl }, // Add logo URL with comment text
+            ]);
             setCommentText("");
         }
+    };
+
+    const handleShareClick = () => {
+        alert("You shared this post!");
     };
 
     return (
@@ -62,7 +69,7 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
                         </div>
 
                         {/* Share Button */}
-                        <FaShareAlt className="h-6 w-6 text-gray-500 cursor-pointer" />
+                        <FaShareAlt className="h-6 w-6 text-gray-500 cursor-pointer" onClick={handleShareClick} />
 
                         {/* Save Button */}
                         <FaBookmark className="h-6 w-6 text-gray-500 cursor-pointer" />
@@ -92,7 +99,10 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
                 {comments.length > 0 && (
                     <div className="mt-4">
                         {comments.map((comment, index) => (
-                            <p key={index} className="text-gray-300 border-b border-gray-600 py-1">{comment}</p>
+                            <div key={index} className="flex items-center space-x-3 text-gray-300 border-b border-gray-600 py-1">
+                                <img src="https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png" alt="Commenter Logo" className="w-8 h-8 rounded-full" />
+                                <p>{comment.text}</p>
+                            </div>
                         ))}
                     </div>
                 )}
