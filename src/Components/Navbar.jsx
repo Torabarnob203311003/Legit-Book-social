@@ -76,7 +76,7 @@ function Navbar() {
                 <NavLink
                     to="/creators"
                     className={({ isActive }) =>
-                        `flex items-center gap-1 cursor-pointer transition ${isActive ? 'bg-white text-blue-600 pl-2 pr-2 pt-1 pb-1 rounded-xl' : 'text-gray-400'}`
+                        `flex items-centergap-2 pl-3 pr-3 pt-1 pb-1 rounded-2xl cursor-pointer transition ${isActive ? 'bg-white text-blue-600 pl-2 pr-2 pt-1 pb-1 rounded-xl' : 'text-gray-400'}`
                     }
                 >
                     <FaUsers size={22} />

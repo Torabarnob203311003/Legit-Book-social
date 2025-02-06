@@ -72,7 +72,7 @@ export default function Profile() {
                     { name: "Michael Lee", active: true }
                 ].map((contact, index) => (
                     <div key={index} className="flex items-center space-x-4">
-                        <p className=" text-gray-500">{contact.name}</p>
+                        <p className=" text-white">{contact.name}</p>
                         {contact.active && (
                             <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                         )}

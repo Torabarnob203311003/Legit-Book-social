@@ -6,7 +6,7 @@ import { FaShareAlt } from "react-icons/fa";
 export default function Post({ username, time, message, imageUrl }) {
 
     const LikeIcon = ({ count }) => (
-        <div className="flex items-center">
+        <div className="flex items-center ">
             <HeartIcon className="h-5 w-5 text-gray-500 mr-1" />
             <span>{count}</span>
         </div>
@@ -29,8 +29,8 @@ export default function Post({ username, time, message, imageUrl }) {
 
 
     return (
-        <div>
-            <div className="p-6 ml-0 sm:ml-[250px] rounded-lg w-full bg-zinc-800 sm:w-auto">
+        <div className=" mr-32">
+            <div className="p-6 ml-0 sm:ml-[150px] rounded-lg w-full bg-zinc-800 sm:w-auto">
 
                 {/* User Info */}
                 <div className="flex items-center space-x-4">
@@ -54,9 +54,7 @@ export default function Post({ username, time, message, imageUrl }) {
                         <CommentIcon count={3} /> {/* Added Comment Icon with count */}
                         <FaShareAlt />
                     </div>
-                    <div> {/* Save Icon on the right */}
-                        <SaveIcon />
-                    </div>
+                
                 </div>
 
             </div>
