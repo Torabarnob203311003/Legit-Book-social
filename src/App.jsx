@@ -54,18 +54,7 @@ export default function App() {
 
           {/* Profile Sidebar */}
           <Profile
-            name="Abu Torab"
-            bio="Software Engineer (Intern)"
-            jobs={[
-              "Nike (2015-Present)",
-              "McDonald's (2013-2016)",
-              "Google (2016-Present)",
-              "Apple (2014-2016)"
-            ]}
-            education={[
-              "Bachelors CS - 3.5 GPA",
-              "Master IT - 3.5 GPA"
-            ]}
+           
           />
         </div>
       </Router>
