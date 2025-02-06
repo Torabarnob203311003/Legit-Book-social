@@ -10,7 +10,7 @@ export default function Profile() {
             </p>
 
             {/* Job Section */}
-            <h2 className="text-gray-500 text-lg font-semibold">Job</h2>
+            <h2 className="text-gray-500 text-lg font-semibold">Jobs</h2>
             <div className="space-y-4 ">
                 {[
                     {
@@ -72,9 +72,9 @@ export default function Profile() {
                     { name: "Michael Lee", active: true }
                 ].map((contact, index) => (
                     <div key={index} className="flex items-center space-x-4">
-                        <p className="text-gray-700">{contact.name}</p>
+                        <p className=" text-gray-500">{contact.name}</p>
                         {contact.active && (
-                            <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                         )}
                     </div>
                 ))}
@@ -82,7 +82,7 @@ export default function Profile() {
 
             {/* Search Box */}
             <input
-                placeholder="Search..."
+                placeholder="Search&Chat 🔎"
                 className="w-full border p-2 rounded-md bg-gray-800 text-white placeholder-gray-400"
             />
         </div>
