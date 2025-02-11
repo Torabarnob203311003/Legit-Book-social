@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { FaRegCommentAlt, FaShareAlt } from "react-icons/fa";
 import { HeartIcon } from "@heroicons/react/24/solid";
-import { MdOutlineEmojiEmotions } from "react-icons/md";
+import { MdOutlineEmojiEmotions, MdOutlineTextFields } from "react-icons/md";
 import { BiSolidImageAdd } from "react-icons/bi";
 import { FaCamera } from "react-icons/fa6";
 import { TiAttachment } from "react-icons/ti";
-import { MdOutlineTextFields } from "react-icons/md";
 
 export default function CreatePost() {
     const [posts, setPosts] = useState([]);
     const [postText, setPostText] = useState("");
-    const [postImageUrl, setPostImageUrl] = useState("");
+    const [postImageUrl, setPostImageUrl] = useState(null);
 
     const addPost = () => {
-        if (postText.trim() !== "") {
+        if (postText.trim() !== "" || postImageUrl) {
             const newPost = {
                 id: Date.now(),
                 username: "John Doe",  // Replace with dynamic username
@@ -27,7 +26,14 @@ export default function CreatePost() {
             };
             setPosts([newPost, ...posts]);
             setPostText("");
-            setPostImageUrl("");
+            setPostImageUrl(null);
+        }
+    };
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setPostImageUrl(URL.createObjectURL(file));
         }
     };
 
@@ -46,9 +52,9 @@ export default function CreatePost() {
     };
 
     return (
-        <div className="flex flex-col items-center p-4 space-y-6  sm:ml-[-25px]">
+        <div className="flex flex-col items-center p-4 space-y-6 sm:ml-[-25px]">
             {/* Post Input Section */}
-            <div className=" p-4   rounded-lg w-full max-w-[750px]">
+            <div className="p-4 rounded-lg w-full max-w-[750px]">
                 <textarea
                     className="w-full p-2 text-white bg-zinc-800 border border-gray-600 rounded-md focus:ring mt-2 focus:ring-blue-500 text-base"
                     rows="3"
@@ -56,29 +62,44 @@ export default function CreatePost() {
                     value={postText}
                     onChange={(e) => setPostText(e.target.value)}
                 ></textarea>
-                
-              <div className="flex  flex-row sm:space-x-[480px]">
-                
-                   <div className="flex flex-row sm:space-x-5 sm:mt-3">
 
+                {/* Image Preview */}
+                {postImageUrl && (
+                    <div className="mt-2">
+                        <img src={postImageUrl} alt="Selected" className="w-full max-h-60 object-cover rounded-md" />
+                    </div>
+                )}
+
+                <div className="flex flex-row sm:space-x-[480px]">
+                    <div className="flex flex-row sm:space-x-5 sm:mt-3">
                         <MdOutlineEmojiEmotions className="text-gray-500" size={20} />
-                        <BiSolidImageAdd className="text-gray-500" size={20} />
+                        <label htmlFor="imageUpload">
+                            <BiSolidImageAdd className="text-gray-500 cursor-pointer" size={20} />
+                        </label>
+                        <input
+                            id="imageUpload"
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={handleImageUpload}
+                        />
                         <FaCamera className="text-gray-500" size={18} />
-                        <TiAttachment className="text-gray-500"  size={20} />
+                        <TiAttachment className="text-gray-500" size={20} />
                         <MdOutlineTextFields className="text-gray-500" size={20} />
-                   </div>
+                    </div>
+
                     <button
-                        className=" items-end mt-2 px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm"
+                        className="items-end mt-2 px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm"
                         onClick={addPost}
                     >
                         Post
                     </button>
-              </div>
+                </div>
             </div>
 
             {/* Display Posts */}
             {posts.map((post) => (
-                <div key={post.id} className="   shadow-md p-4 rounded-lg bg-zinc-800 w-full max-w-[700px]">
+                <div key={post.id} className="shadow-md p-4 rounded-lg bg-zinc-800 w-full max-w-[700px]">
                     {/* User Info */}
                     <div className="flex items-center space-x-3">
                         <img src={post.logoUrl} alt="User Logo" className="w-8 h-8 rounded-full" />
