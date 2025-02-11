@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegThumbsUp, FaRegCommentDots, FaShare } from "react-icons/fa";
 
 // Sample Creator Collaboration Posts
@@ -13,7 +13,7 @@ const creatorPosts = [
         date: "1h ago",
         title: "Looking for a Video Editor 🎬",
         description: "I'm searching for a skilled video editor to help with my tech reviews. If you're interested, drop your portfolio in the comments!",
-        image: "https://images.unsplash.com/photo-1584433144859-1fc8a5fc1843",
+        image: "https://th.bing.com/th/id/OIP.SQ8Hww7Nfyrc_Ovth1dKuAHaEu?rs=1&pid=ImgDetMain",
         reactions: { likes: 120, comments: 34, shares: 15 }
     },
     {
@@ -44,41 +44,39 @@ const creatorPosts = [
     }
 ];
 
-// Learning Resources List
-const learningResources = [
-    {
-        title: "Canva for Beginners",
-        link: "https://www.canva.com/learn/",
-        description: "Learn how to design stunning graphics with Canva."
-    },
-    {
-        title: "YouTube Growth Guide",
-        link: "https://blog.youtube/creators/",
-        description: "Tips on growing your YouTube channel and monetizing content."
-    },
-    {
-        title: "SEO for Content Creators",
-        link: "https://moz.com/learn/seo",
-        description: "Master search engine optimization to boost your reach."
-    },
-    {
-        title: "Podcasting 101",
-        link: "https://www.buzzsprout.com/blog/podcasting-101",
-        description: "Step-by-step guide to starting your own podcast."
-    }
-];
-
 const Creators = () => {
+    const [inView, setInView] = useState(false);
+
+    // Intersection Observer to detect when the learning resources section is in view
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const [entry] = entries;
+                if (entry.isIntersecting) {
+                    setInView(true);
+                }
+            },
+            { threshold: 0.5 }
+        );
+        const section = document.getElementById("learning-resources");
+        observer.observe(section);
+
+        return () => {
+            if (section) {
+                observer.unobserve(section);
+            }
+        };
+    }, []);
+
     return (
-        <div className="bg-[#1A1A1A] text-white p-6 min-h-screen">
+        <div className="bg-[#1A1A1A] sm:ml-[98px] text-white p-6 min-h-screen">
             {/* Collaboration Hub */}
-            <h2 className="text-2xl font-bold mb-4">🚀 Creator Collaboration Hub</h2>
-            <div className="space-y-6">
+            <div className="space-y-8">
                 {creatorPosts.map((post) => (
-                    <div key={post.id} className="bg-[#252525] p-4 rounded-lg shadow-md">
+                    <div key={post.id} className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-6 ml-0 sm:ml-[150px] rounded-lg max-w-[712px] bg-zinc-800 sm:w-auto overflow-auto scrollbar-hidden">
                         {/* Author Info */}
-                        <div className="flex items-center gap-3">
-                            <img src={post.author.avatar} alt={post.author.name} className="w-10 h-10 rounded-full" />
+                        <div className="flex items-center gap-3 mb-4">
+                            <img src={post.author.avatar} alt={post.author.name} className="w-12 h-12 rounded-full" />
                             <div>
                                 <h4 className="font-semibold">{post.author.name}</h4>
                                 <p className="text-gray-400 text-sm">{post.author.role} • {post.date}</p>
@@ -86,16 +84,16 @@ const Creators = () => {
                         </div>
 
                         {/* Post Content */}
-                        <h3 className="mt-3 text-lg font-semibold">{post.title}</h3>
-                        <p className="text-gray-300 mt-1">{post.description}</p>
+                        <h3 className="text-lg font-semibold">{post.title}</h3>
+                        <p className="text-gray-300 mt-2">{post.description}</p>
 
                         {/* Post Image */}
                         {post.image && (
-                            <img src={post.image} alt="Post" className="mt-3 w-full rounded-lg" />
+                            <img src={post.image} alt="Post" className="mt-4 w-full rounded-lg sm:w-[950px] sm:h-[380px] object-cover hover:opacity-90 transition-opacity" />
                         )}
 
                         {/* Engagement Section */}
-                        <div className="flex justify-between mt-3 text-gray-400 text-sm">
+                        <div className="flex justify-between mt-4 text-gray-400 text-sm">
                             <div className="flex items-center gap-2 cursor-pointer hover:text-blue-500">
                                 <FaRegThumbsUp /> {post.reactions.likes}
                             </div>
@@ -111,12 +109,21 @@ const Creators = () => {
             </div>
 
             {/* Learning Resources */}
-            <h2 className="text-2xl font-bold mt-10 mb-4">📚 Learning Resources</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {learningResources.map((resource, index) => (
-                    <a key={index} href={resource.link} target="_blank" rel="noopener noreferrer" className="bg-[#252525] p-4 rounded-lg shadow-md hover:bg-[#333] transition">
-                        <h3 className="text-lg font-semibold text-blue-400">{resource.title}</h3>
-                        <p className="text-gray-300 mt-1">{resource.description}</p>
+            <h2 className="text-2xl font-bold mt-12 mb-6">📚 Learning Resources</h2>
+            <div
+                id="learning-resources"
+                className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-700 ease-in-out ${inView ? 'opacity-100 translate-x-0' : 'opacity-100 translate-x-0'}`}
+            >
+                {creatorPosts.map((resource, index) => (
+                    <a
+                        key={index}
+                        href={resource.link || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-[#252525] p-6 rounded-lg shadow-[0_0_1.5px_rgba(255,255,255,0.8)] hover:bg-[#333] transition-all transform hover:scale-105 hover:shadow-lg max-w-[712px] mx-auto"
+                    >
+                        <h3 className="text-lg font-semibold text-blue-400">Sample Title</h3>
+                        <p className="text-gray-300 mt-2">Sample Description</p>
                     </a>
                 ))}
             </div>

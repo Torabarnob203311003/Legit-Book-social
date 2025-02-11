@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaRegCommentAlt, FaShareAlt } from 'react-icons/fa';
+import { HeartIcon } from '@heroicons/react/24/solid';
 
 const newsData = [
     {
@@ -31,15 +33,103 @@ const newsData = [
 ];
 
 function News() {
+    const [likeCount, setLikeCount] = useState(25);
+    const [isLiked, setIsLiked] = useState(false);
+    const [showCommentBox, setShowCommentBox] = useState(false);
+    const [commentText, setCommentText] = useState("");
+    const [comments, setComments] = useState([]);
+
+    const toggleLike = () => {
+        setIsLiked(!isLiked);
+        setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
+    };
+
+    const toggleCommentBox = () => {
+        setShowCommentBox(!showCommentBox);
+    };
+
+    const submitComment = () => {
+        if (commentText.trim() !== "") {
+            setComments([
+                ...comments,
+                { text: commentText },
+            ]);
+            setCommentText("");
+        }
+    };
+
+    const handleShareClick = () => {
+        alert("You shared this post!");
+    };
+
     return (
-        <div className="p-6 ml-0 sm:ml-[150px] rounded-lg w-full bg-zinc-800 sm:w-auto  space-y-6">
+        <div className="p-6 ml-0 sm:ml-[98px] rounded-lg w-full sm:w-auto space-y-6">
             {newsData.map((newsItem) => (
-                <div key={newsItem.id} className=" p-6 rounded-lg shadow-lg">
-                    <img src={newsItem.image} alt={newsItem.title} className="w-full h-48 object-cover rounded-lg mb-4" />
-                    <h2 className="text-xl font-semibold text-white">{newsItem.title}</h2>
+                <div key={newsItem.id} className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-6 ml-0 sm:ml-[150px] rounded-lg max-w-[712px] bg-zinc-800 sm:w-auto overflow-auto scrollbar-hidden">
+
+                    {/* User Info */}
+                    <div className="flex items-center space-x-4">
+                        <h2 className="text-xl font-bold text-white">{newsItem.title}</h2>
+                    </div>
+
                     <p className="text-gray-400 text-sm mb-4">{newsItem.date} | by {newsItem.author}</p>
-                    <p className="text-gray-300 mb-4">{newsItem.content}</p>
-                    <a href={newsItem.link} className="text-black bg-white p-2 rounded-xl ">Read more</a>
+
+                    {/* Image */}
+                    <img src={newsItem.image} alt={newsItem.title} className="w-full h-48 object-cover rounded-lg mb-4" />
+
+                    {/* Content */}
+                    <p className="text-gray-300 text-lg sm:text-xl mb-4">{newsItem.content}</p>
+
+                    {/* Actions */}
+                    <div className="mt-6 ml-14 flex items-center justify-between text-gray-400 text-sm sm:text-base">
+                        <div className="flex space-x-48">
+                            {/* Like Button */}
+                            <div className="flex items-center cursor-pointer" onClick={toggleLike}>
+                                <HeartIcon className={`h-6 w-6 transition-colors ${isLiked ? "text-red-500" : "text-gray-500"}`} />
+                                <span className="ml-1">{likeCount}</span>
+                            </div>
+
+                            {/* Comment Button */}
+                            <div className="flex items-center cursor-pointer" onClick={toggleCommentBox}>
+                                <FaRegCommentAlt className="h-6 w-6 text-gray-500" />
+                                <span className="ml-1">{comments.length}</span>
+                            </div>
+
+                            {/* Share Button */}
+                            <FaShareAlt className="h-6 w-6 text-gray-500 cursor-pointer" onClick={handleShareClick} />
+                        </div>
+                    </div>
+
+                    {/* Comment Box (Toggles) */}
+                    {showCommentBox && (
+                        <div className="mt-4">
+                            <textarea
+                                className="w-full p-2 text-white bg-gray-700 border border-gray-600 rounded-md focus:ring focus:ring-blue-500"
+                                rows="2"
+                                placeholder="Write a comment..."
+                                value={commentText}
+                                onChange={(e) => setCommentText(e.target.value)}
+                            ></textarea>
+                            <button
+                                className="mt-2 px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-md"
+                                onClick={submitComment}
+                            >
+                                Comment
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Display Comments */}
+                    {comments.length > 0 && (
+                        <div className="mt-4">
+                            {comments.map((comment, index) => (
+                                <div key={index} className="flex items-center space-x-3 text-gray-300 border-b border-gray-600 py-1">
+                                    <img src="https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png" alt="Commenter Logo" className="w-8 h-8 rounded-full" />
+                                    <p>{comment.text}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             ))}
         </div>

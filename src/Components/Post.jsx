@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaRegCommentAlt, FaShareAlt, FaBookmark } from "react-icons/fa";
+import { FaRegCommentAlt, FaShareAlt } from "react-icons/fa";
 import { HeartIcon } from "@heroicons/react/24/solid";
 
 export default function Post({ username, time, message, imageUrl, logoUrl }) {
@@ -33,8 +33,8 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
     };
 
     return (
-        <div className="ml-32   ">
-            <div className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-6 ml-0 sm:ml-[150px]  rounded-lg  max-w-[712px]  max-h-auto bg-zinc-800 sm:w-auto">
+        <div className="ml-32">
+            <div className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-6 ml-0 sm:ml-[150px] rounded-lg max-w-[712px] max-h-auto bg-zinc-800 sm:w-auto overflow-auto scrollbar-hidden">
 
                 {/* User Info */}
                 <div className="flex items-center space-x-4">
@@ -72,7 +72,6 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
                         <FaShareAlt className="h-6 w-6 text-gray-500 cursor-pointer" onClick={handleShareClick} />
 
                         {/* Save Button */}
-                       
                     </div>
                 </div>
 
@@ -110,3 +109,4 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
         </div>
     );
 }
+    

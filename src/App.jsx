@@ -14,7 +14,7 @@ import Creators from './Components/Navbar-Sections/Creators';
 export default function App() {
   return (
     <div className="bg-[#1A1A1A] max-w-[
-1440px] overflow-hidden p-4 ">
+1440px] overflow-hidden ">
       <Router>
         <Navbar />
         <div className="flex bg-[#1A1A1A] text-white min-h-screen">
