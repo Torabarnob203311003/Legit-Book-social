@@ -13,19 +13,22 @@ export default function CreatePost() {
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const [capturedImage, setCapturedImage] = useState(null);
+    const [attachedFile, setAttachedFile] = useState(null);  // State to store the attached file
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
+    const fileInputRef = useRef(null);  // Reference for the file input
 
-    const emojis = ["😊", "😂", "❤️", "😍", "😎", "😭", "😢", "😋", "😉", "😜"]; // List of emojis
+    const emojis = ["😊", "😂", "❤️", "😍", "😎", "😭", "😢", "😋", "😉", "😜"];
 
     const addPost = () => {
-        if (postText.trim() !== "" || postImageUrl) {
+        if (postText.trim() !== "" || postImageUrl || attachedFile) {
             const newPost = {
                 id: Date.now(),
-                username: "John Doe",  // Replace with dynamic username
+                username: "John Doe",
                 time: "Just now",
                 message: postText,
-                imageUrl: postImageUrl || capturedImage, // Use captured image if available
+                imageUrl: postImageUrl || capturedImage,
+                attachedFile: attachedFile,  // Add the attached file here
                 logoUrl: "https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png",
                 likeCount: 0,
                 isLiked: false,
@@ -35,6 +38,7 @@ export default function CreatePost() {
             setPostText("");
             setPostImageUrl(null);
             setCapturedImage(null);
+            setAttachedFile(null);  // Clear attached file after posting
         }
     };
 
@@ -42,6 +46,13 @@ export default function CreatePost() {
         const file = event.target.files[0];
         if (file) {
             setPostImageUrl(URL.createObjectURL(file));
+        }
+    };
+
+    const handleAttachmentUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setAttachedFile(file);  // Store the uploaded file
         }
     };
 
@@ -61,7 +72,7 @@ export default function CreatePost() {
 
     const insertEmoji = (emoji) => {
         setPostText(postText + emoji);
-        setShowEmojiPicker(false); // Hide emoji picker after emoji is selected
+        setShowEmojiPicker(false);
     };
 
     const openCamera = () => {
@@ -120,12 +131,13 @@ export default function CreatePost() {
                     </div>
                 )}
 
+                {/* Attachment and Emoji Options */}
                 <div className="flex flex-row sm:space-x-[480px]">
                     <div className="flex flex-row sm:space-x-5 sm:mt-3">
                         <MdOutlineEmojiEmotions
                             className="text-gray-500 cursor-pointer"
                             size={20}
-                            onClick={() => setShowEmojiPicker(!showEmojiPicker)} // Toggle emoji picker visibility
+                            onClick={() => setShowEmojiPicker(!showEmojiPicker)}
                         />
                         <label htmlFor="imageUpload">
                             <BiSolidImageAdd className="text-gray-500 cursor-pointer" size={20} />
@@ -138,7 +150,20 @@ export default function CreatePost() {
                             onChange={handleImageUpload}
                         />
                         <FaCamera className="text-gray-500 cursor-pointer" size={18} onClick={openCamera} />
-                        <TiAttachment className="text-gray-500" size={20} />
+
+                        {/* Attachment Icon */}
+                        <TiAttachment
+                            className="text-gray-500 cursor-pointer"
+                            size={20}
+                            onClick={() => fileInputRef.current.click()} // Trigger file input click
+                        />
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept="*/*"
+                            className="hidden"
+                            onChange={handleAttachmentUpload} // Handle attachment file upload
+                        />
                         <MdOutlineTextFields className="text-gray-500" size={20} />
                     </div>
 
@@ -213,6 +238,14 @@ export default function CreatePost() {
                     {/* Post Content */}
                     <p className="mt-4 text-gray-300">{post.message}</p>
                     {post.imageUrl && <img src={post.imageUrl} alt="Post" className="mt-4 rounded-lg w-full object-cover" />}
+                    {/* Show attached file name if available */}
+                    {post.attachedFile && (
+                        <div className="mt-2 text-gray-400">
+                            <a href={URL.createObjectURL(post.attachedFile)} download>
+                                {post.attachedFile.name}
+                            </a>
+                        </div>
+                    )}
 
                     {/* Actions */}
                     <div className="mt-4 flex items-center justify-between text-gray-400 text-sm">
