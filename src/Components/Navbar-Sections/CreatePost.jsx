@@ -24,12 +24,12 @@ export default function CreatePost() {
         if (postText.trim() !== "" || postImageUrl || attachedFile) {
             const newPost = {
                 id: Date.now(),
-                username: "John Doe",
+                username: "Abu Torab",
                 time: "Just now",
                 message: postText,
                 imageUrl: postImageUrl || capturedImage,
                 attachedFile: attachedFile,  // Add the attached file here
-                logoUrl: "https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png",
+                logoUrl: "https://avatars.githubusercontent.com/u/118876454?s=400&u=2a067f3e74d4808365f886c1c44f77887e74cd70&v=4",
                 likeCount: 0,
                 isLiked: false,
                 comments: []

@@ -8,13 +8,18 @@ import Notifications from './Navbar-Sections/Notifications';
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isMessageVisible, setIsMessageVisible] = useState(false); // State for message visibility
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
+    const toggleMessageBox = () => {
+        setIsMessageVisible(!isMessageVisible); // Toggle the message box visibility
+    };
+
     return (
-        <nav className="bg-[#1A1A1A] rounded-lg flex justify-between items-center flex-wrap p-3 md:p-5">
+        <nav className="bg-[#1A1A1A] rounded-lg flex justify-between items-center flex-wrap p-3 md:p-5 relative">
             {/* Left Section - Logo & Search */}
             <div className="flex items-center w-full md:w-auto justify-between md:flex-1">
                 <a href='#' className="text-2xl md:text-3xl font-semibold text-white">Legit<span className="text-blue-600">book</span></a>
@@ -45,11 +50,29 @@ function Navbar() {
             {/* Right Section - Icons */}
             <div className="hidden lg:flex items-center sm:ml-7 space-x-4 sm:space-x-12">
                 {/* Integrated Notifications Component */}
-                 <Notifications/>
-                <FaEnvelope className="text-gray-400 hover:text-white cursor-pointer" size={20} />
+                <Notifications />
+                <FaEnvelope
+                    className="text-gray-400 hover:text-white cursor-pointer"
+                    size={20}
+                    onClick={toggleMessageBox} // Click handler for the message box
+                />
 
-                <img src="https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png" alt="Avatar" className="rounded-full h-8 w-8 sm:h-10 sm:w-10 cursor-pointer" />
+                {/* Avatar */}
+                <img src="https://avatars.githubusercontent.com/u/118876454?s=400&u=2a067f3e74d4808365f886c1c44f77887e74cd70&v=4" alt="Avatar" className="rounded-full h-8 w-8 sm:h-10 sm:w-10 cursor-pointer" />
             </div>
+
+            {/* Message Box - Conditional Rendering */}
+            {isMessageVisible && (
+                <div className="absolute top-16 right-4 bg-white p-4 rounded-lg shadow-lg w-64 transition-all duration-300 ease-in-out">
+                    <div className="flex items-center space-x-3">
+                        <img src="https://avatars.githubusercontent.com/u/118876454?s=400&u=2a067f3e74d4808365f886c1c44f77887e74cd70&v=4" alt="Avatar" className="rounded-full h-8 w-8" />
+                        <span className="font-semibold">Your Name</span>
+                    </div>
+                    <div className="mt-2 text-sm text-gray-700">
+                        <p> next work will be done  tomorrow... heheh.</p>
+                    </div>
+                </div>
+            )}
         </nav>
     );
 }
