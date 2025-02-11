@@ -10,6 +10,9 @@ export default function CreatePost() {
     const [posts, setPosts] = useState([]);
     const [postText, setPostText] = useState("");
     const [postImageUrl, setPostImageUrl] = useState(null);
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
+    const emojis = ["😊", "😂", "❤️", "😍", "😎", "😭", "😢", "😋", "😉", "😜"]; // List of emojis
 
     const addPost = () => {
         if (postText.trim() !== "" || postImageUrl) {
@@ -51,6 +54,11 @@ export default function CreatePost() {
         }
     };
 
+    const insertEmoji = (emoji) => {
+        setPostText(postText + emoji);
+        setShowEmojiPicker(false); // Hide emoji picker after emoji is selected
+    };
+
     return (
         <div className="flex flex-col items-center p-4 space-y-6 sm:ml-[-25px]">
             {/* Post Input Section */}
@@ -72,7 +80,11 @@ export default function CreatePost() {
 
                 <div className="flex flex-row sm:space-x-[480px]">
                     <div className="flex flex-row sm:space-x-5 sm:mt-3">
-                        <MdOutlineEmojiEmotions className="text-gray-500" size={20} />
+                        <MdOutlineEmojiEmotions
+                            className="text-gray-500 cursor-pointer"
+                            size={20}
+                            onClick={() => setShowEmojiPicker(!showEmojiPicker)} // Toggle emoji picker visibility
+                        />
                         <label htmlFor="imageUpload">
                             <BiSolidImageAdd className="text-gray-500 cursor-pointer" size={20} />
                         </label>
@@ -96,6 +108,23 @@ export default function CreatePost() {
                     </button>
                 </div>
             </div>
+
+            {/* Emoji Picker */}
+            {showEmojiPicker && (
+                <div className="absolute bg-white border border-gray-300 p-2 rounded-md mt-2">
+                    <div className="grid grid-cols-4 gap-2">
+                        {emojis.map((emoji, index) => (
+                            <button
+                                key={index}
+                                className="text-xl"
+                                onClick={() => insertEmoji(emoji)}
+                            >
+                                {emoji}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             {/* Display Posts */}
             {posts.map((post) => (
