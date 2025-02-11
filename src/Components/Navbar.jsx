@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { FaHome, FaUsers, FaRegNewspaper, FaBell, FaEnvelope } from "react-icons/fa";
+import { FaHome, FaUsers, FaRegNewspaper, FaEnvelope } from "react-icons/fa";
 import { LuFolderSearch2 } from "react-icons/lu";
 import { MdCastForEducation } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { NavLink } from 'react-router-dom';
+import Notifications from './Navbar-Sections/Notifications';
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [unreadNotifications, setUnreadNotifications] = useState(5); // Example unread notifications
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -44,15 +44,10 @@ function Navbar() {
 
             {/* Right Section - Icons */}
             <div className="hidden lg:flex items-center sm:ml-7 space-x-4 sm:space-x-12">
-                {/* Notification Icon with Badge */}
-                <div className="relative">
-                    <FaBell className="text-gray-400 hover:text-white cursor-pointer" size={20} />
-                    {unreadNotifications > 0 && (
-                        <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-3 h-3 flex items-center justify-center">{unreadNotifications}</span>
-                    )}
-                </div>
+                {/* Integrated Notifications Component */}
+                 <Notifications/>
                 <FaEnvelope className="text-gray-400 hover:text-white cursor-pointer" size={20} />
-                
+
                 <img src="https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png" alt="Avatar" className="rounded-full h-8 w-8 sm:h-10 sm:w-10 cursor-pointer" />
             </div>
         </nav>
