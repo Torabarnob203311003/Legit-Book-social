@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaRegCommentAlt, FaShareAlt } from "react-icons/fa";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import { MdOutlineEmojiEmotions, MdOutlineTextFields } from "react-icons/md";
@@ -11,6 +11,10 @@ export default function CreatePost() {
     const [postText, setPostText] = useState("");
     const [postImageUrl, setPostImageUrl] = useState(null);
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+    const [isCameraOpen, setIsCameraOpen] = useState(false);
+    const [capturedImage, setCapturedImage] = useState(null);
+    const videoRef = useRef(null);
+    const canvasRef = useRef(null);
 
     const emojis = ["😊", "😂", "❤️", "😍", "😎", "😭", "😢", "😋", "😉", "😜"]; // List of emojis
 
@@ -21,7 +25,7 @@ export default function CreatePost() {
                 username: "John Doe",  // Replace with dynamic username
                 time: "Just now",
                 message: postText,
-                imageUrl: postImageUrl,
+                imageUrl: postImageUrl || capturedImage, // Use captured image if available
                 logoUrl: "https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png",
                 likeCount: 0,
                 isLiked: false,
@@ -30,6 +34,7 @@ export default function CreatePost() {
             setPosts([newPost, ...posts]);
             setPostText("");
             setPostImageUrl(null);
+            setCapturedImage(null);
         }
     };
 
@@ -59,6 +64,38 @@ export default function CreatePost() {
         setShowEmojiPicker(false); // Hide emoji picker after emoji is selected
     };
 
+    const openCamera = () => {
+        setIsCameraOpen(true);
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                videoRef.current.srcObject = stream;
+            })
+            .catch((error) => {
+                console.error("Error accessing the camera", error);
+                setIsCameraOpen(false);
+            });
+    };
+
+    const captureImage = () => {
+        if (canvasRef.current && videoRef.current) {
+            const context = canvasRef.current.getContext("2d");
+            context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
+            const dataUrl = canvasRef.current.toDataURL("image/png");
+            setCapturedImage(dataUrl);
+            setIsCameraOpen(false);
+        }
+    };
+
+    const closeCamera = () => {
+        if (videoRef.current && videoRef.current.srcObject) {
+            const stream = videoRef.current.srcObject;
+            const tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+            videoRef.current.srcObject = null;
+        }
+        setIsCameraOpen(false);
+    };
+
     return (
         <div className="flex flex-col items-center p-4 space-y-6 sm:ml-[-25px]">
             {/* Post Input Section */}
@@ -75,6 +112,11 @@ export default function CreatePost() {
                 {postImageUrl && (
                     <div className="mt-2">
                         <img src={postImageUrl} alt="Selected" className="w-full max-h-60 object-cover rounded-md" />
+                    </div>
+                )}
+                {capturedImage && (
+                    <div className="mt-2">
+                        <img src={capturedImage} alt="Captured" className="w-full max-h-60 object-cover rounded-md" />
                     </div>
                 )}
 
@@ -95,7 +137,7 @@ export default function CreatePost() {
                             className="hidden"
                             onChange={handleImageUpload}
                         />
-                        <FaCamera className="text-gray-500" size={18} />
+                        <FaCamera className="text-gray-500 cursor-pointer" size={18} onClick={openCamera} />
                         <TiAttachment className="text-gray-500" size={20} />
                         <MdOutlineTextFields className="text-gray-500" size={20} />
                     </div>
@@ -123,6 +165,36 @@ export default function CreatePost() {
                             </button>
                         ))}
                     </div>
+                </div>
+            )}
+
+            {/* Camera View */}
+            {isCameraOpen && (
+                <div className="relative w-full max-w-[750px] mt-4">
+                    <video
+                        ref={videoRef}
+                        className="w-full rounded-md"
+                        autoPlay
+                        playsInline
+                    />
+                    <canvas
+                        ref={canvasRef}
+                        className="hidden"
+                        width={640}
+                        height={480}
+                    />
+                    <button
+                        onClick={captureImage}
+                        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-blue-500 text-white rounded-full"
+                    >
+                        Capture
+                    </button>
+                    <button
+                        onClick={closeCamera}
+                        className="absolute top-4 right-4 px-4 py-2 bg-red-500 text-white rounded-full"
+                    >
+                        Close
+                    </button>
                 </div>
             )}
 
