@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { FaRegCommentAlt, FaShareAlt } from "react-icons/fa";
 import { HeartIcon } from "@heroicons/react/24/solid";
+import { MdOutlineEmojiEmotions } from "react-icons/md";
+import { BiSolidImageAdd } from "react-icons/bi";
+import { FaCamera } from "react-icons/fa6";
+import { TiAttachment } from "react-icons/ti";
+import { MdOutlineTextFields } from "react-icons/md";
 
 export default function CreatePost() {
     const [posts, setPosts] = useState([]);
@@ -41,34 +46,39 @@ export default function CreatePost() {
     };
 
     return (
-        <div className="flex flex-col items-center p-4 space-y-6">
+        <div className="flex flex-col items-center p-4 space-y-6  sm:ml-[-25px]">
             {/* Post Input Section */}
-            <div className="shadow-md p-4 rounded-lg bg-zinc-800 w-full max-w-lg">
+            <div className=" p-4   rounded-lg w-full max-w-[750px]">
                 <textarea
-                    className="w-full p-2 text-white bg-gray-700 border border-gray-600 rounded-md focus:ring focus:ring-blue-500 text-sm"
+                    className="w-full p-2 text-white bg-zinc-800 border border-gray-600 rounded-md focus:ring mt-2 focus:ring-blue-500 text-base"
                     rows="3"
-                    placeholder="Write a post..."
+                    placeholder="Make a post..."
                     value={postText}
                     onChange={(e) => setPostText(e.target.value)}
                 ></textarea>
-                <input
-                    type="text"
-                    className="w-full mt-2 p-2 text-white bg-gray-700 border border-gray-600 rounded-md text-sm"
-                    placeholder="Image URL (optional)"
-                    value={postImageUrl}
-                    onChange={(e) => setPostImageUrl(e.target.value)}
-                />
-                <button
-                    className="mt-2 px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm"
-                    onClick={addPost}
-                >
-                    Post
-                </button>
+                
+              <div className="flex  flex-row sm:space-x-[480px]">
+                
+                   <div className="flex flex-row sm:space-x-5 sm:mt-3">
+
+                        <MdOutlineEmojiEmotions className="text-gray-500" size={20} />
+                        <BiSolidImageAdd className="text-gray-500" size={20} />
+                        <FaCamera className="text-gray-500" size={18} />
+                        <TiAttachment className="text-gray-500"  size={20} />
+                        <MdOutlineTextFields className="text-gray-500" size={20} />
+                   </div>
+                    <button
+                        className=" items-end mt-2 px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm"
+                        onClick={addPost}
+                    >
+                        Post
+                    </button>
+              </div>
             </div>
 
             {/* Display Posts */}
             {posts.map((post) => (
-                <div key={post.id} className="shadow-md p-4 rounded-lg bg-zinc-800 w-full max-w-lg">
+                <div key={post.id} className="   shadow-md p-4 rounded-lg bg-zinc-800 w-full max-w-[700px]">
                     {/* User Info */}
                     <div className="flex items-center space-x-3">
                         <img src={post.logoUrl} alt="User Logo" className="w-8 h-8 rounded-full" />
