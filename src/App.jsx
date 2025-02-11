@@ -10,6 +10,7 @@ import News from './Components/Navbar-Sections/News';
 import JobSearch from './Components/Navbar-Sections/Job-Search';
 import Educations from './Components/Navbar-Sections/Education';
 import Creators from './Components/Navbar-Sections/Creators';
+import CreatePost from './Components/Navbar-Sections/CreatePost';
 
 export default function App() {
   return (
@@ -43,6 +44,7 @@ export default function App() {
                   path="/"
                   element={
                     <div className="mt-6 space-y-6">
+                      <CreatePost/>
                       {demoPosts.map((post, index) => (
                         <Post key={index} {...post} />
                       ))}

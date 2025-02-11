@@ -2,7 +2,7 @@ import { FaCheckCircle } from "react-icons/fa";
 
 export default function Profile() {
     return (
-        <div className="max-w-[180px] sm:max-w-[200px] md:max-w-[220px] lg:max-w-[240px] p-2 space-y-4">
+        <div className="max-w-[180px] sm:max-w-[200px] md:max-w-[220px] lg:max-w-[240px] p-2 space-y-4  hidden sm:block">
             {/* Bio Section */}
             <h2 className="text-gray-500 text-xs sm:text-sm md:text-base font-semibold">Bio</h2>
             <p className="text-white text-xs sm:text-xs md:text-sm">
@@ -34,11 +34,13 @@ export default function Profile() {
                         year: "2019 - Present"
                     }
                 ].map((job, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                        <img src={job.logo} alt={job.name} className="w-6 h-6 rounded-3xl object-contain" />
-                        <div className="pr-4 sm:pr-6 md:pr-8">
-                            <p className="text-white text-xs sm:text-sm md:text-base font-semibold">{job.name}</p>
-                            <p className="text-gray-500 text-xs sm:text-sm md:text-base">{job.year}</p>
+                    <div key={index} className="flex items-center justify-between space-x-3">
+                        <div className="flex items-center space-x-2">
+                            <img src={job.logo} alt={job.name} className="w-6 h-6 rounded-3xl object-contain" />
+                            <div>
+                                <p className="text-white text-xs sm:text-sm md:text-base font-semibold">{job.name}</p>
+                                <p className="text-gray-500 text-xs sm:text-sm md:text-base">{job.year}</p>
+                            </div>
                         </div>
                         <FaCheckCircle className="text-green-500 text-xs sm:text-sm md:text-base" />
                     </div>
@@ -76,10 +78,10 @@ export default function Profile() {
                     { name: "Jane Smith", active: false },
                     { name: "Michael Lee", active: true }
                 ].map((contact, index) => (
-                    <div key={index} className="flex  flex-row items-center space-x-2">
+                    <div key={index} className="flex flex-row items-center space-x-2">
                         <p className="text-white text-xs sm:text-sm md:text-base">{contact.name}</p>
                         {contact.active && (
-                            <span className=" w-2 h-2 bg-green-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                         )}
                     </div>
                 ))}
@@ -88,7 +90,7 @@ export default function Profile() {
             {/* Search Box */}
             <input
                 placeholder="Search&Chat 🔎"
-                className="w-full border p-1 rounded-md bg-gray-800 text-white placeholder-gray-400 text-xs sm:text-xs md:text-sm"
+                className="w-full border p-2 rounded-md bg-slate-800 text-white placeholder-gray-500 text-xs sm:text-xs md:text-sm"
             />
         </div>
     );

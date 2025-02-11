@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaRegThumbsUp, FaRegCommentDots, FaShare } from "react-icons/fa";
+import { FaRegCommentAlt, FaShareAlt } from "react-icons/fa";
 import { HeartIcon } from "@heroicons/react/24/solid";
 
 const educationPosts = [
@@ -46,6 +46,9 @@ const educationPosts = [
 
 function Education() {
     const [likedPosts, setLikedPosts] = useState({});
+    const [showCommentBox, setShowCommentBox] = useState(false);
+    const [commentText, setCommentText] = useState("");
+    const [comments, setComments] = useState({});
 
     const toggleLike = (postId) => {
         setLikedPosts((prevLikes) => ({
@@ -54,9 +57,25 @@ function Education() {
         }));
     };
 
+    const toggleCommentBox = (postId) => {
+        setShowCommentBox((prevState) => !prevState);
+    };
+
+    const submitComment = (postId) => {
+        if (commentText.trim() !== "") {
+            setComments((prevComments) => ({
+                ...prevComments,
+                [postId]: [
+                    ...(prevComments[postId] || []),
+                    { text: commentText, logo: educationPosts.find(post => post.id === postId)?.author.avatar }
+                ]
+            }));
+            setCommentText("");
+        }
+    };
+
     return (
-        <div className="sm:ml-[98px]  p-6 space-y-6">
-           
+        <div className="sm:ml-[98px] p-6 space-y-6">
             {educationPosts.map((post) => {
                 const isLiked = likedPosts[post.id];
                 return (
@@ -95,15 +114,51 @@ function Education() {
                             </button>
 
                             {/* Comment Button */}
-                            <button className="flex items-center gap-2 text-gray-400 hover:text-blue-500 transition">
-                                <FaRegCommentDots size={18} /> Comment
+                            <button
+                                className="flex items-center gap-2 text-gray-400 hover:text-blue-500 transition"
+                                onClick={() => toggleCommentBox(post.id)}
+                            >
+                                <FaRegCommentAlt className="h-6 w-6 text-gray-500" />
+                                Comment
                             </button>
 
                             {/* Share Button */}
                             <button className="flex items-center gap-2 text-gray-400 hover:text-blue-500 transition">
-                                <FaShare size={18} /> Share
+                                <FaShareAlt className="h-6 w-6 text-gray-500" />
+                                Share
                             </button>
                         </div>
+
+                        {/* Comment Box (Toggles) */}
+                        {showCommentBox && (
+                            <div className="mt-4">
+                                <textarea
+                                    className="w-full p-2 text-white bg-gray-700 border border-gray-600 rounded-md focus:ring focus:ring-blue-500"
+                                    rows="2"
+                                    placeholder="Write a comment..."
+                                    value={commentText}
+                                    onChange={(e) => setCommentText(e.target.value)}
+                                ></textarea>
+                                <button
+                                    className="mt-2 px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-md"
+                                    onClick={() => submitComment(post.id)}
+                                >
+                                    Comment
+                                </button>
+                            </div>
+                        )}
+
+                        {/* Display Comments */}
+                        {comments[post.id] && comments[post.id].length > 0 && (
+                            <div className="mt-4">
+                                {comments[post.id].map((comment, index) => (
+                                    <div key={index} className="flex items-center space-x-3 text-gray-300 border-b border-gray-600 py-1">
+                                        <img src={comment.logo} alt="Commenter Logo" className="w-8 h-8 rounded-full" />
+                                        <p>{comment.text}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 );
             })}

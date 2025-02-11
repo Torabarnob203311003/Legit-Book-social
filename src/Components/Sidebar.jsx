@@ -30,7 +30,7 @@ export default function Sidebar() {
     };
 
     return (
-        <div className=" max-w-[948px] max-h-[3858px]   sm:w-64 bg-[#1A1A1A] text-gray-500 p-8 space-y-4">
+        <div className=" max-w-[948px] max-h-[3858px]   sm:w-64 bg-[#1A1A1A] text-gray-500 p-8 space-y-4     hidden sm:block">
             <div className="flex justify-between">
                 <h2 className="text-lg font-semibold">Filters</h2>
                 <button className="text-blue-400 text-sm">Clear All</button>

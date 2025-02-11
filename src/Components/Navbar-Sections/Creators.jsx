@@ -114,16 +114,17 @@ const Creators = () => {
                 id="learning-resources"
                 className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-700 ease-in-out ${inView ? 'opacity-100 translate-x-0' : 'opacity-100 translate-x-0'}`}
             >
+                {/* Mapping learning resources */}
                 {creatorPosts.map((resource, index) => (
                     <a
                         key={index}
-                        href={resource.link || "#"}
+                        href={resource.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-[#252525] p-6 rounded-lg shadow-[0_0_1.5px_rgba(255,255,255,0.8)] hover:bg-[#333] transition-all transform hover:scale-105 hover:shadow-lg max-w-[712px] mx-auto"
                     >
-                        <h3 className="text-lg font-semibold text-blue-400">Sample Title</h3>
-                        <p className="text-gray-300 mt-2">Sample Description</p>
+                        <h3 className="text-lg font-semibold text-blue-400">{resource.title}</h3>
+                        <p className="text-gray-300 mt-2">{resource.description}</p>
                     </a>
                 ))}
             </div>
