@@ -75,7 +75,9 @@ function Education() {
     };
 
     return (
-        <div className="sm:ml-[98px] p-6 space-y-6">
+
+        <div className="flex justify-center items-center "  >
+            <div className="sm:ml-[-450px] p-6 space-y-6 max-w-screen-sm">
             {educationPosts.map((post) => {
                 const isLiked = likedPosts[post.id];
                 return (
@@ -162,6 +164,8 @@ function Education() {
                     </div>
                 );
             })}
+        </div>
+
         </div>
     );
 }

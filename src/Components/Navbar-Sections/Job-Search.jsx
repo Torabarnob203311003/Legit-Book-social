@@ -55,25 +55,26 @@ const jobListings = [
 
 function JobSearch() {
     return (
-        <div className="p-6 ml-0 sm:ml-[250px] rounded-lg w-full sm:w-auto space-y-6">
-           
-            {jobListings.map((job) => (
-                <div key={job.id} className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-6 rounded-lg max-w-[712px] bg-zinc-800 sm:w-auto overflow-auto scrollbar-hidden">
-                    <div className="flex items-center space-x-4">
-                        {/* Logo Image */}
-                        <img src={job.logo} alt={job.company} className="w-14 h-14 rounded-lg object-contain bg-white p-1" />
-                        <div className="flex-1">
-                            <h3 className="text-xl font-medium text-white">{job.title}</h3>
-                            <p className="text-gray-400">{job.company} - {job.location}</p>
-                            <span className="text-blue-500 font-semibold">{job.jobType}</span>
-                            <p className="text-gray-300 mt-2">{job.description}</p>
+        <div className="flex justify-center items-center p-6">
+            <div className="w-full sm:w-[712px] p-6 space-y-6  sm:ml-[-50px]">
+                {jobListings.map((job) => (
+                    <div key={job.id} className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-6 rounded-lg bg-zinc-800 overflow-auto scrollbar-hidden">
+                        <div className="flex items-center space-x-4">
+                            {/* Logo Image */}
+                            <img src={job.logo} alt={job.company} className="w-14 h-14 rounded-lg object-contain bg-white p-1" />
+                            <div className="flex-1">
+                                <h3 className="text-xl font-medium text-white">{job.title}</h3>
+                                <p className="text-gray-400">{job.company} - {job.location}</p>
+                                <span className="text-blue-500 font-semibold">{job.jobType}</span>
+                                <p className="text-gray-300 mt-2">{job.description}</p>
+                            </div>
                         </div>
+                        <a href={job.applyLink} className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium">
+                            Apply Now
+                        </a>
                     </div>
-                    <a href={job.applyLink} className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium">
-                        Apply Now
-                    </a>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 }

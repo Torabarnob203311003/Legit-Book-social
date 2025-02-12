@@ -108,7 +108,7 @@ export default function CreatePost() {
     };
 
     return (
-        <div className="flex flex-col items-center p-4 space-y-6 sm:ml-[-25px]">
+        <div className="flex flex-col items-center p-4 space-y-6 sm:ml-[-5px]">
             {/* Post Input Section */}
             <div className="p-4 rounded-lg w-full max-w-[750px]">
                 <textarea
