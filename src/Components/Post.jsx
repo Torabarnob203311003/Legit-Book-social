@@ -34,22 +34,12 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
     };
 
     return (
-
-       
-        <div className="ml-4 sm:ml-6 md:ml-16 lg:ml-32">
-            
-
-
-             
-             
-
-
-
-            <div className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-4 sm:p-5 md:p-6 ml-0 sm:ml-[150px] rounded-lg max-w-[350px] sm:max-w-[712px] max-h-auto bg-zinc-800 sm:w-auto overflow-auto scrollbar-hidden">
+        <div className="flex flex-col items-center p-4 space-y-6 sm:ml-[-25px]">
+            <div className="shadow-md p-4 sm:p-5 md:p-6 rounded-lg max-w-[700px] w-full bg-zinc-800 overflow-auto">
                 {/* User Info */}
                 <div className="flex items-center space-x-3 sm:space-x-4">
                     <img
-                        src="https://s3-alpha-sig.figma.com/img/8a57/03ab/40c7de9070ca322539f727640f649f1a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=qlexTvTHYu63Hp~Gz4OYC0mgQU1XK5vm2-XlKBqqLtQ5I9CR8B~8xKr2pDeld4UHJRDi~vK21PtlrsxiFuTGA9a~ZiA1ek2C9prjcprnrksOkX~o5nQqeucuBm9HzizOL0-vIE4hk3FPGwWmhwuerRxzoDce9O0fjhjqL6vKZLkVhcuQqBe0qklBpyMzy1Xrtlk6JVBoXKoInnIHdPB5bmH71u7TbhSyV1gPFF74JdZfugaEE8L0NMWuPOpTVt7r7hKoB7Kxr~SL9MDrDbzLG5gwRUd3wj9RduIPfHRiOvXCXE4hW9zokCqt2yOdA1W2kZ54ESpar8SRRl74JqgACA__"
+                        src={logoUrl}
                         alt="Logo"
                         className="w-8 h-8 sm:w-10 sm:h-10 rounded-full"
                     />
@@ -94,22 +84,17 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
                     </div>
                 </div>
 
-                {/* Comment Box (Toggles) */}
+                {/* Comment Section */}
                 {showCommentBox && (
                     <div className="mt-4">
-                        <textarea
-                            className="w-full p-2 text-white bg-gray-700 border border-gray-600 rounded-md focus:ring focus:ring-blue-500 text-sm sm:text-base"
-                            rows="2"
+                        <input
+                            type="text"
+                            className="w-full p-2 text-white bg-gray-700 border border-gray-600 rounded-md text-sm"
                             placeholder="Write a comment..."
                             value={commentText}
                             onChange={(e) => setCommentText(e.target.value)}
-                        ></textarea>
-                        <button
-                            className="mt-2 px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm sm:text-base"
-                            onClick={submitComment}
-                        >
-                            Comment
-                        </button>
+                            onKeyDown={(e) => e.key === "Enter" && submitComment()}
+                        />
                     </div>
                 )}
 
@@ -118,12 +103,8 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
                     <div className="mt-4">
                         {comments.map((comment, index) => (
                             <div key={index} className="flex items-center space-x-3 text-gray-300 border-b border-gray-600 py-1">
-                                <img
-                                    src="https://png.pngtree.com/png-clipart/20231015/original/pngtree-man-avatar-clipart-illustration-png-image_13302499.png"
-                                    alt="Commenter Logo"
-                                    className="w-6 h-6 sm:w-8 sm:h-8 rounded-full"
-                                />
-                                <p className="text-sm sm:text-base">{comment.text}</p>
+                                <img src={comment.logo} alt="Commenter Logo" className="w-6 h-6 rounded-full" />
+                                <p className="text-sm">{comment.text}</p>
                             </div>
                         ))}
                     </div>

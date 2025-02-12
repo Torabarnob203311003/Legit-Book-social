@@ -63,7 +63,7 @@ function News() {
     };
 
     return (
-        <div className="p-6 ml-0 sm:ml-[98px] rounded-lg w-full sm:w-auto space-y-6">
+        <div className="p-6 ml-0 sm:ml-[98px] rounded-lg w-[20%] bg-cover sm:w-auto space-y-6 flex flex-col items-center w-full max-w-2xl mx-auto mt-6 space-y-6">
             {newsData.map((newsItem) => (
                 <div key={newsItem.id} className="shadow-[0_0_1.5px_rgba(255,255,255,0.8)] p-6 ml-0 sm:ml-[150px] rounded-lg max-w-[712px] bg-zinc-800 sm:w-auto overflow-auto scrollbar-hidden">
 

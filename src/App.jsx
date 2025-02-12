@@ -18,13 +18,13 @@ export default function App() {
 1440px] overflow-hidden ">
       <Router>
         <Navbar />
-        <div className="flex bg-[#1A1A1A] text-white min-h-screen">
+        <div className="flex bg-[#1A1A1A] text-white min-h-screen flex bg-[#1A1A1A]  w-full">
           {/* Sidebar Section */}
           <Sidebar />
 
           {/* Content Section */}
           <div className="flex-1 p-6 h-screen overflow-auto">
-            <div className="flex-1 p-6">
+            <div className="flex-1 p-6 ">
               {/* Routes for different sections */}
               <Routes>
                 {/* News Route */}
