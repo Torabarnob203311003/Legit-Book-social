@@ -44,7 +44,7 @@ export default function App() {
                   path="/"
                   element={
                     <div className="mt-6 space-y-6">
-                      <CreatePost/>
+                      <CreatePost />
                       {demoPosts.map((post, index) => (
                         <Post key={index} {...post} />
                       ))}
@@ -57,7 +57,7 @@ export default function App() {
 
           {/* Profile Sidebar */}
           <Profile
-           
+
           />
         </div>
       </Router>
