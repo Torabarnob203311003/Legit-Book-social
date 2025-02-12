@@ -39,7 +39,7 @@ function Navbar() {
             </div>
 
             {/* Center Section - Horizontal Navigation */}
-            <div className={`flex gap-4 sm:gap-6 md:gap-8 lg:pl-6 md:pl-4 text-gray-300 justify-center w-full md:w-auto ${isMobileMenuOpen ? "flex flex-col md:flex-row" : "hidden md:flex"}`}> {/* Mobile menu styles */}
+            <div className={`flex gap-4 sm:gap-6 md:gap-8 lg:pl-6 md:pl-4 text-gray-300 justify-center w-full md:w-auto ${isMobileMenuOpen ? "flex flex-col md:flex-row" : "hidden pr-3 md:flex"}`}> {/* Mobile menu styles */}
                 <NavLink to="/" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}> <FaHome size={18} /> <span>Home</span> </NavLink>
                 <NavLink to="/news" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}> <FaRegNewspaper size={18} /> <span>News</span> </NavLink>
                 <NavLink to="/job-search" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}> <LuFolderSearch2 size={18} /> <span>Job Search</span> </NavLink>

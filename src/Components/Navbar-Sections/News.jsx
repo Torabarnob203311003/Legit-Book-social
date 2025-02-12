@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FaRegCommentAlt, FaShareAlt } from 'react-icons/fa';
 import { HeartIcon } from '@heroicons/react/24/solid';
-
 const newsData = [
     {
         id: 1,
@@ -9,8 +8,9 @@ const newsData = [
         date: "February 6, 2025",
         author: "Jane Doe",
         image: "https://th.bing.com/th/id/OIP.Dphry17_zHWgnLzs1jfjmQHaEK?rs=1&pid=ImgDetMain",
-        content: "Artificial Intelligence (AI) is transforming industries at an unprecedented pace. From healthcare to finance, AI is revolutionizing how we work, live, and interact with the world. In 2025, AI technologies will continue to advance, making significant strides in automation, deep learning, and human-machine collaboration. Here's what you need to know about the AI landscape in 2025.",
-        link: "/news/ai-2025"
+        content: "Artificial Intelligence (AI) is transforming industries at an unprecedented pace. From healthcare to finance, AI is revolutionizing how we work, live, and interact with the world. In 2025, AI technologies will continue to advance, making significant strides in automation, deep learning, and human-machine collaboration.",
+        link: "/news/ai-2025",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/4/42/Artificial_Intelligence_Logo.svg"
     },
     {
         id: 2,
@@ -18,8 +18,9 @@ const newsData = [
         date: "February 6, 2025",
         author: "John Smith",
         image: "https://th.bing.com/th/id/OIP.gzyDnhesC2qkAs7zBJ6sgwHaDt?rs=1&pid=ImgDetMain",
-        content: "The tech industry is booming, with job opportunities in various fields growing rapidly. Whether you're a software developer, data scientist, or AI specialist, the demand for skilled professionals is higher than ever. Here are the top 10 job opportunities you should consider in the tech industry for 2025.",
-        link: "/news/job-opportunities-2025"
+        content: "The tech industry is booming, with job opportunities in various fields growing rapidly. Whether you're a software developer, data scientist, or AI specialist, the demand for skilled professionals is higher than ever.",
+        link: "/news/job-opportunities-2025",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Jobs_icon.svg"
     },
     {
         id: 3,
@@ -27,10 +28,82 @@ const newsData = [
         date: "February 6, 2025",
         author: "Alice Brown",
         image: "https://th.bing.com/th/id/OIP.nxrsutVaQ7ZQnXQP8OELIwHaEK?rs=1&pid=ImgDetMain",
-        content: "Starting or advancing your career can be challenging, but with the right roadmap, you can achieve your professional goals. In 2025, career development will require adapting to new technologies and understanding industry trends. This article explores key steps to master your career path and create a roadmap for success.",
-        link: "/news/career-roadmap-2025"
+        content: "Starting or advancing your career can be challenging, but with the right roadmap, you can achieve your professional goals. In 2025, career development will require adapting to new technologies and understanding industry trends.",
+        link: "/news/career-roadmap-2025",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/3/34/Compass_icon.svg"
+    },
+    {
+        id: 4,
+        title: "The Future of Cybersecurity: Trends and Challenges in 2025",
+        date: "February 7, 2025",
+        author: "Tom Williams",
+        image: "https://th.bing.com/th/id/OIP.b136Y7iFdCDcdk9Reuhk0gHaDt?rs=1&pid=ImgDetMain",
+        content: "As cyber threats evolve, cybersecurity professionals must stay ahead of the curve. The future of cybersecurity will involve advanced machine learning, AI-driven defense systems, and increased collaboration across industries.",
+        link: "/news/cybersecurity-2025",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Cybersecurity_logo.svg"
+    },
+    {
+        id: 5,
+        title: "Blockchain: The Technology Revolutionizing Finance",
+        date: "February 8, 2025",
+        author: "Emily Johnson",
+        image: "https://th.bing.com/th/id/OIP.yprXKYxhJWB8SJy8YYLISQHaFE?rs=1&pid=ImgDetMain",
+        content: "Blockchain is not just for cryptocurrency. Its decentralized nature is revolutionizing finance, making transactions more secure, transparent, and efficient.",
+        link: "/news/blockchain-finance",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/4/47/Blockchain_logo.svg"
+    },
+    {
+        id: 6,
+        title: "Why You Should Learn Data Science in 2025",
+        date: "February 9, 2025",
+        author: "Mark Thompson",
+        image: "https://th.bing.com/th/id/OIP.PVOsNZqgj2hanCPy4sZrYQHaD4?rs=1&pid=ImgDetMain",
+        content: "Data science is one of the fastest-growing fields. With its ability to transform raw data into actionable insights, learning data science will open doors to countless career opportunities.",
+        link: "/news/data-science-2025",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/3/33/Data_Science_Logo.svg"
+    },
+    {
+        id: 7,
+        title: "The Role of Cloud Computing in Modern Business",
+        date: "February 10, 2025",
+        author: "Sarah Lee",
+        image: "https://th.bing.com/th/id/OIP.PAkh0KxmvJbfnvAfaZZ5IgHaEK?rs=1&pid=ImgDetMain",
+        content: "Cloud computing has changed how businesses operate, offering scalability, flexibility, and cost-effectiveness. It’s now essential for enterprises to adopt cloud services to remain competitive.",
+        link: "/news/cloud-computing-business",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Cloud_computing_logo.svg"
+    },
+    {
+        id: 8,
+        title: "How 5G is Transforming the Telecommunications Industry",
+        date: "February 11, 2025",
+        author: "Michael Scott",
+        image: "https://th.bing.com/th/id/OIP.KWj4w-mgWqdeO_nkjkd3hQHaEK?rs=1&pid=ImgDetMain",
+        content: "5G technology promises faster, more reliable connectivity. The telecommunications industry is being transformed by this innovation, opening doors to advancements in IoT, autonomous vehicles, and much more.",
+        link: "/news/5g-telecom",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/e/e5/5G_logo.svg"
+    },
+    {
+        id: 9,
+        title: "The Importance of Soft Skills in Tech Careers",
+        date: "February 12, 2025",
+        author: "David Green",
+        image: "https://th.bing.com/th/id/OIP.bMvkDt4qIMgS8eOk0JQhQgHaEK?rs=1&pid=ImgDetMain",
+        content: "In addition to technical expertise, soft skills such as communication, problem-solving, and teamwork are crucial in the tech industry. They often make the difference between a good and a great career.",
+        link: "/news/soft-skills-tech",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/c/c0/Soft_Skills_Logo.svg"
+    },
+    {
+        id: 10,
+        title: "The Impact of Augmented Reality on Consumer Retail",
+        date: "February 13, 2025",
+        author: "Lisa Brown",
+        image: "https://th.bing.com/th/id/OIP.f7DBBbN9KXNOwv9gmcD0HgHaEK?rs=1&pid=ImgDetMain",
+        content: "Augmented Reality (AR) is changing how consumers shop. With AR technology, retailers can provide immersive shopping experiences that drive customer engagement and sales.",
+        link: "/news/ar-consumer-retail",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/AR_logo.svg"
     }
 ];
+
 
 function News() {
     const [likeCount, setLikeCount] = useState(25);

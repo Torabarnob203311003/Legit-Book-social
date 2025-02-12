@@ -23,7 +23,7 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
         if (commentText.trim() !== "") {
             setComments([
                 ...comments,
-                { text: commentText, logo: logoUrl },
+                { text: commentText, logo: logoUrl }, // Ensure the correct logo is being used
             ]);
             setCommentText("");
         }
@@ -39,7 +39,7 @@ export default function Post({ username, time, message, imageUrl, logoUrl }) {
                 {/* User Info */}
                 <div className="flex items-center space-x-3 sm:space-x-4">
                     <img
-                        src={logoUrl}
+                        src="https://th.bing.com/th/id/OIP.jJs9SPR64jCA-S9UslqCYAHaEK?rs=1&pid=ImgDetMain"
                         alt="Logo"
                         className="w-8 h-8 sm:w-10 sm:h-10 rounded-full"
                     />
