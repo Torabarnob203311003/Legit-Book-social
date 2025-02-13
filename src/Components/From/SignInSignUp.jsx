@@ -25,7 +25,7 @@ export default function SignInSignUp({ setAuth }) {
 
     const onSubmit = (data) => {
         console.log("Form Data:", data);
-        alert(`${isLogin ? "Logged In" : "Signed Up"} Successfully!`);
+       
         setAuth(true); // ✅ Set authentication to true
     };
 

@@ -5,12 +5,21 @@ import { MdCastForEducation } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { NavLink, useNavigate } from "react-router-dom";
 import Notifications from "./Navbar-Sections/Notifications";
+import SignInSignUp from "./From/SignInSignUp";
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMessageVisible, setIsMessageVisible] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false); // Profile menu state
-    const navigate = useNavigate(); // For navigation
+    const navigate = useNavigate();
+    
+    const handleSignOut = () => {
+        // Clear authentication data if stored (e.g., localStorage/sessionStorage)
+        localStorage.removeItem("authToken");
+
+        // Redirect to the login page
+        navigate(<SignInSignUp/>);
+    };// For navigation
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -24,9 +33,6 @@ function Navbar() {
         setIsProfileMenuOpen(!isProfileMenuOpen);
     };
 
-    const handleSignOut = () => {
-        navigate("/src/Components/From/SignInSignUp.jsx"); // Redirects to SignInSignUp page
-    };
 
     return (
         <nav className="bg-[#1A1A1A] rounded-lg p-3 md:p-5 relative flex flex-wrap md:flex-nowrap justify-between items-center">
