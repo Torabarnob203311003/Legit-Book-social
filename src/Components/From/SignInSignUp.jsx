@@ -5,6 +5,8 @@ import * as yup from "yup";
 
 export default function SignInSignUp({ setAuth }) {
     const [isLogin, setIsLogin] = useState(false);
+    const [registeredUsers, setRegisteredUsers] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
 
     // ✅ Validation Schema with Yup
     const schema = yup.object().shape({
@@ -24,14 +26,28 @@ export default function SignInSignUp({ setAuth }) {
     });
 
     const onSubmit = (data) => {
-        console.log("Form Data:", data);
-        setAuth(true);
+        if (isLogin) {
+            // Check if user exists in registeredUsers list
+            const userExists = registeredUsers.find(
+                (user) => user.email === data.email && user.password === data.password
+            );
+            if (userExists) {
+                setAuth(true);
+            } else {
+                setErrorMessage("Invalid email or password");
+            }
+        } else {
+            // Sign up - Store user in registeredUsers state
+            setRegisteredUsers([...registeredUsers, data]);
+            setIsLogin(true); // Switch to login form after successful sign-up
+            setErrorMessage("");
+        }
     };
 
     return (
         <div className="flex flex-col justify-center items-center min-h-screen bg-zinc-900 p-6">
             {/* ✅ Legitbook Logo - Centered Above the Form */}
-            <div className="text-4xl md:text-6xl  font-semibold text-white mb-20">
+            <div className="text-4xl md:text-6xl font-semibold text-white mb-20">
                 Legit<span className="text-blue-600">book</span>
             </div>
 
@@ -42,6 +58,9 @@ export default function SignInSignUp({ setAuth }) {
                 <h2 className="text-2xl font-semibold text-white text-center mb-4">
                     {isLogin ? "Log In" : "Sign Up"}
                 </h2>
+
+                {/* Error Message */}
+                {errorMessage && <p className="text-red-500 text-sm text-center mb-2">{errorMessage}</p>}
 
                 {/* Email Input */}
                 <label className="block text-gray-400 text-sm font-medium mb-2">Email</label>
@@ -77,11 +96,14 @@ export default function SignInSignUp({ setAuth }) {
 
                 {/* Toggle between Sign Up and Log In */}
                 <p className="text-sm text-center mt-4 text-gray-400">
-                    {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+                    {isLogin ? "Don't have an account?" : "Already have an account?"} {" "}
                     <button
                         type="button"
                         className="text-blue-500 hover:underline"
-                        onClick={() => setIsLogin(!isLogin)}
+                        onClick={() => {
+                            setIsLogin(!isLogin);
+                            setErrorMessage(""); // Reset error message when switching
+                        }}
                     >
                         {isLogin ? "Sign Up" : "Log In"}
                     </button>
