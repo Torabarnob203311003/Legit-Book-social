@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 export default function SignInSignUp({ setAuth }) {
-    const [isLogin, setIsLogin] = useState(false); // Toggle between Sign In and Sign Up
+    const [isLogin, setIsLogin] = useState(false);
 
     // ✅ Validation Schema with Yup
     const schema = yup.object().shape({
@@ -25,24 +25,26 @@ export default function SignInSignUp({ setAuth }) {
 
     const onSubmit = (data) => {
         console.log("Form Data:", data);
-       
-        setAuth(true); // ✅ Set authentication to true
+        setAuth(true);
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
+        <div className="flex flex-col justify-center items-center min-h-screen bg-zinc-900 p-6">
+            {/* ✅ Legitbook Logo - Centered Above the Form */}
+            <div className="text-4xl md:text-6xl  font-semibold text-white mb-20">
+                Legit<span className="text-blue-600">book</span>
+            </div>
+
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md"
+                className="bg-gray-800 shadow-white shadow-sm p-6 rounded-lg shadow-lg w-full max-w-md"
             >
-                <h2 className="text-2xl font-semibold text-gray-700 text-center mb-4">
+                <h2 className="text-2xl font-semibold text-white text-center mb-4">
                     {isLogin ? "Log In" : "Sign Up"}
                 </h2>
 
                 {/* Email Input */}
-                <label className="block text-gray-600 text-sm font-medium mb-2">
-                    Email
-                </label>
+                <label className="block text-gray-400 text-sm font-medium mb-2">Email</label>
                 <input
                     type="email"
                     placeholder="Enter your email"
@@ -54,9 +56,7 @@ export default function SignInSignUp({ setAuth }) {
                 )}
 
                 {/* Password Input */}
-                <label className="block text-gray-600 text-sm font-medium mb-2">
-                    Password
-                </label>
+                <label className="block text-gray-400 text-sm font-medium mb-2">Password</label>
                 <input
                     type="password"
                     placeholder="Enter your password"
@@ -76,7 +76,7 @@ export default function SignInSignUp({ setAuth }) {
                 </button>
 
                 {/* Toggle between Sign Up and Log In */}
-                <p className="text-sm text-center mt-4 text-gray-600">
+                <p className="text-sm text-center mt-4 text-gray-400">
                     {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
                     <button
                         type="button"

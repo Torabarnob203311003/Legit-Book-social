@@ -5,42 +5,25 @@ import { MdCastForEducation } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { NavLink, useNavigate } from "react-router-dom";
 import Notifications from "./Navbar-Sections/Notifications";
-import SignInSignUp from "./From/SignInSignUp";
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMessageVisible, setIsMessageVisible] = useState(false);
-    const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false); // Profile menu state
+    const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
     const navigate = useNavigate();
-    
+
     const handleSignOut = () => {
-        // Clear authentication data if stored (e.g., localStorage/sessionStorage)
-        localStorage.removeItem("authToken");
-
-        // Redirect to the login page
-        navigate(<SignInSignUp/>);
-    };// For navigation
-
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
+        localStorage.removeItem("authToken"); // Clear authentication data
+        navigate("./src/Components/From/SignInSignUp.jsx"); // Redirect to the login page
     };
-
-    const toggleMessageBox = () => {
-        setIsMessageVisible(!isMessageVisible);
-    };
-
-    const toggleProfileMenu = () => {
-        setIsProfileMenuOpen(!isProfileMenuOpen);
-    };
-
 
     return (
         <nav className="bg-[#1A1A1A] rounded-lg p-3 md:p-5 relative flex flex-wrap md:flex-nowrap justify-between items-center">
             {/* Left Section - Logo & Search */}
             <div className="flex items-center w-full md:w-auto justify-between md:flex-1 mb-2 md:mb-0">
-                <a href="#" className="text-2xl md:text-3xl font-semibold text-white">
+                <NavLink to="/" className="text-2xl md:text-3xl font-semibold text-white">
                     Legit<span className="text-blue-600">book</span>
-                </a>
+                </NavLink>
                 <div className="relative w-full pr-10 md:w-[550px] flex items-center mt-2 md:mt-0">
                     <input
                         type="text"
@@ -49,26 +32,36 @@ function Navbar() {
                     />
                     <CiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
                 </div>
-                <button onClick={toggleMobileMenu} className="text-white md:hidden">
+                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white md:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
 
-            {/* Center Section - Horizontal Navigation */}
+            {/* Center Section - Navigation Links */}
             <div className={`flex gap-4 sm:gap-6 md:gap-8 lg:pl-6 md:pl-4 text-gray-300 justify-center w-full md:w-auto ${isMobileMenuOpen ? "flex flex-col md:flex-row" : "hidden pr-3 md:flex"}`}>
-                <NavLink to="/" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}> <FaHome size={18} /> <span>Home</span> </NavLink>
-                <NavLink to="/news" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}> <FaRegNewspaper size={18} /> <span>News</span> </NavLink>
-                <NavLink to="/job-search" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}> <LuFolderSearch2 size={18} /> <span>Job Search</span> </NavLink>
-                <NavLink to="/education" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}> <MdCastForEducation size={18} /> <span>Education</span> </NavLink>
-                <NavLink to="/creators" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}> <FaUsers size={18} /> <span>Creators</span> </NavLink>
+                <NavLink to="/" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}>
+                    <FaHome size={18} /> <span>Home</span>
+                </NavLink>
+                <NavLink to="/news" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}>
+                    <FaRegNewspaper size={18} /> <span>News</span>
+                </NavLink>
+                <NavLink to="/job-search" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}>
+                    <LuFolderSearch2 size={18} /> <span>Job Search</span>
+                </NavLink>
+                <NavLink to="/education" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}>
+                    <MdCastForEducation size={18} /> <span>Education</span>
+                </NavLink>
+                <NavLink to="/creators" className={({ isActive }) => `flex items-center gap-2 p-2 rounded-lg cursor-pointer transition text-xs sm:text-sm md:text-base ${isActive ? 'bg-white text-blue-600' : 'text-gray-400'}`}>
+                    <FaUsers size={18} /> <span>Creators</span>
+                </NavLink>
             </div>
 
             {/* Right Section - Icons */}
             <div className="flex items-center ml-auto mt-2 md:mt-0 space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-12">
                 <Notifications />
-                <FaEnvelope className="text-gray-400 hover:text-white cursor-pointer" size={20} onClick={toggleMessageBox} />
+                <FaEnvelope className="text-gray-400 hover:text-white cursor-pointer" size={20} onClick={() => setIsMessageVisible(!isMessageVisible)} />
 
                 {/* Profile Picture with Clickable Dropdown */}
                 <div className="relative">
@@ -76,7 +69,7 @@ function Navbar() {
                         src="https://avatars.githubusercontent.com/u/118876454?s=400&u=2a067f3e74d4808365f886c1c44f77887e74cd70&v=4"
                         alt="Avatar"
                         className="rounded-full h-8 w-8 sm:h-10 sm:w-10 cursor-pointer"
-                        onClick={toggleProfileMenu}
+                        onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                     />
 
                     {/* Profile Dropdown */}
